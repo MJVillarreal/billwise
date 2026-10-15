@@ -5,6 +5,7 @@ import { FileSpreadsheet, FileText, RotateCcw } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useLanguage } from '@/i18n/language-provider';
+import { DemoCompany } from './demo-company';
 import { exportCsv, exportExcel } from '@/lib/export';
 import { formatDateInput, formatMoney } from '@/lib/format';
 import {
@@ -106,7 +107,8 @@ export function InvoiceList() {
     <div className="mx-auto w-full max-w-6xl px-4 py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t.invoices.title}</h1>
+          <DemoCompany />
+          <h1 className="mt-3 text-3xl font-bold tracking-tight">{t.invoices.title}</h1>
           <p className="mt-2 max-w-2xl text-muted">{t.invoices.subtitle}</p>
         </div>
         <div className="flex flex-wrap gap-2">

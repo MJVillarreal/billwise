@@ -118,6 +118,7 @@ export interface Messages {
     string
   >;
   issues: Record<IssueCode, IssueMessage>;
+  demoCompany: { label: string; fictitious: string };
   footer: string;
 }
 
@@ -252,7 +253,7 @@ const es: Messages = {
   },
   dashboard: {
     title: 'Dashboard',
-    subtitle: 'Gastos del restaurante a partir de las facturas cargadas.',
+    subtitle: 'Gastos a partir de las facturas cargadas.',
     totalSpend: 'Gasto total',
     ivaCredit: 'IVA crédito fiscal',
     ivaCreditHint: 'De facturas A sin errores',
@@ -303,6 +304,7 @@ const es: Messages = {
       `En el papel dice ${printed} y el QR dice ${qr}. Se usa el QR.`,
     duplicate: () => 'Esta factura ya fue cargada.',
   },
+  demoCompany: { label: 'Empresa de la demo', fictitious: 'ficticia' },
   footer:
     'Proyecto de portfolio. Las facturas de la demo son ficticias y no tienen validez fiscal.',
 };
@@ -432,7 +434,7 @@ const en: Messages = {
   },
   dashboard: {
     title: 'Dashboard',
-    subtitle: "The restaurant's spending, built from the loaded invoices.",
+    subtitle: 'Spending built from the loaded invoices.',
     totalSpend: 'Total spend',
     ivaCredit: 'IVA tax credit',
     ivaCreditHint: 'From A invoices without errors',
@@ -483,6 +485,7 @@ const en: Messages = {
       `The paper says ${printed} and the QR says ${qr}. The QR is used.`,
     duplicate: () => 'This invoice was already loaded.',
   },
+  demoCompany: { label: 'Demo company', fictitious: 'fictitious' },
   footer: 'Portfolio project. Demo invoices are fictitious and have no tax validity.',
 };
 
