@@ -7,24 +7,25 @@
       "en": "Valid A invoice: every field checks out."
     },
     "expectedIssues": [],
+    "letter": "A",
     "printed": {
-      "letter": "A",
       "voucherType": 1,
-      "pointOfSale": 3,
-      "number": 12345,
+      "pointOfSale": "00003",
+      "number": "00012345",
       "issueDate": "2026-09-30",
       "issuer": {
-        "name": "Distribuidora Los Andes SRL",
         "cuit": "30994512079",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Distribuidora Los Andes SRL"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
       "netTaxed": 400000,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [
         {
           "rate": 21,
@@ -35,13 +36,7 @@
           "amount": 13419
         }
       ],
-      "ivaContained": 0,
-      "otherTaxes": [
-        {
-          "description": "Percepción IIBB Mendoza",
-          "amount": 8000
-        }
-      ],
+      "otherTaxes": 8000,
       "total": 478581,
       "cae": "76391245873016",
       "caeDueDate": "2026-10-10"
@@ -70,27 +65,27 @@
       "en": "B invoice to a final consumer, showing the IVA included in the price."
     },
     "expectedIssues": [],
+    "letter": "B",
     "printed": {
-      "letter": "B",
       "voucherType": 6,
-      "pointOfSale": 2,
-      "number": 48127,
+      "pointOfSale": "00002",
+      "number": "00048127",
       "issueDate": "2026-09-18",
       "issuer": {
-        "name": "Bazar El Molino SA",
         "cuit": "30993077263",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Bazar El Molino SA"
       },
       "recipient": {
-        "name": "Consumidor Final",
         "docType": 99,
-        "docNumber": "0"
+        "docNumber": null,
+        "name": "Consumidor Final"
       },
       "currency": "PES",
-      "netTaxed": 0,
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [],
-      "ivaContained": 12810,
-      "otherTaxes": [],
+      "otherTaxes": 0,
       "total": 73810,
       "cae": "76385512094437",
       "caeDueDate": "2026-09-28"
@@ -119,27 +114,27 @@
       "en": "C invoice from a small taxpayer (monotributo): no IVA breakdown."
     },
     "expectedIssues": [],
+    "letter": "C",
     "printed": {
-      "letter": "C",
       "voucherType": 11,
-      "pointOfSale": 1,
-      "number": 214,
+      "pointOfSale": "00001",
+      "number": "00000214",
       "issueDate": "2026-09-05",
       "issuer": {
-        "name": "Lucía Benítez",
         "cuit": "27994826137",
-        "ivaCondition": "Responsable Monotributo"
+        "name": "Lucía Benítez"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
-      "netTaxed": 0,
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [],
-      "ivaContained": 0,
-      "otherTaxes": [],
+      "otherTaxes": 0,
       "total": 185000,
       "cae": "76364870215529",
       "caeDueDate": "2026-09-15"
@@ -170,32 +165,32 @@
     "expectedIssues": [
       "total_mismatch"
     ],
+    "letter": "A",
     "printed": {
-      "letter": "A",
       "voucherType": 1,
-      "pointOfSale": 5,
-      "number": 3391,
+      "pointOfSale": "00005",
+      "number": "00003391",
       "issueDate": "2026-09-24",
       "issuer": {
-        "name": "Bodega Cerro Azul SA",
         "cuit": "30992334181",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Bodega Cerro Azul SA"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
       "netTaxed": 420000,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [
         {
           "rate": 21,
           "amount": 88200
         }
       ],
-      "ivaContained": 0,
-      "otherTaxes": [],
+      "otherTaxes": 0,
       "total": 505800,
       "cae": "76388906631247",
       "caeDueDate": "2026-10-04"
@@ -226,32 +221,32 @@
     "expectedIssues": [
       "invalid_cuit"
     ],
+    "letter": "A",
     "printed": {
-      "letter": "A",
       "voucherType": 1,
-      "pointOfSale": 4,
-      "number": 7750,
+      "pointOfSale": "00004",
+      "number": "00007750",
       "issueDate": "2026-09-12",
       "issuer": {
-        "name": "Lavadero Industrial del Oeste SA",
         "cuit": "30998745621",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Lavadero Industrial del Oeste SA"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
       "netTaxed": 138000,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [
         {
           "rate": 21,
           "amount": 28980
         }
       ],
-      "ivaContained": 0,
-      "otherTaxes": [],
+      "otherTaxes": 0,
       "total": 166980,
       "cae": "76379930148862",
       "caeDueDate": "2026-09-22"
@@ -282,32 +277,32 @@
     "expectedIssues": [
       "qr_mismatch"
     ],
+    "letter": "A",
     "printed": {
-      "letter": "A",
       "voucherType": 1,
-      "pointOfSale": 2,
-      "number": 827,
+      "pointOfSale": "00002",
+      "number": "00000827",
       "issueDate": "2026-09-21",
       "issuer": {
-        "name": "Imprenta Aconcagua SRL",
         "cuit": "30996150948",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Imprenta Aconcagua SRL"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
       "netTaxed": 128000,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [
         {
           "rate": 21,
           "amount": 26880
         }
       ],
-      "ivaContained": 0,
-      "otherTaxes": [],
+      "otherTaxes": 0,
       "total": 154880,
       "cae": "76386011257734",
       "caeDueDate": "2026-10-01"
@@ -338,24 +333,25 @@
     "expectedIssues": [
       "duplicate"
     ],
+    "letter": "A",
     "printed": {
-      "letter": "A",
       "voucherType": 1,
-      "pointOfSale": 3,
-      "number": 12345,
+      "pointOfSale": "00003",
+      "number": "00012345",
       "issueDate": "2026-09-30",
       "issuer": {
-        "name": "Distribuidora Los Andes SRL",
         "cuit": "30994512079",
-        "ivaCondition": "IVA Responsable Inscripto"
+        "name": "Distribuidora Los Andes SRL"
       },
       "recipient": {
-        "name": "Restaurante La Higuera SRL",
         "docType": 80,
-        "docNumber": "30991234566"
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
       },
       "currency": "PES",
       "netTaxed": 400000,
+      "nonTaxed": null,
+      "exempt": null,
       "iva": [
         {
           "rate": 21,
@@ -366,13 +362,7 @@
           "amount": 13419
         }
       ],
-      "ivaContained": 0,
-      "otherTaxes": [
-        {
-          "description": "Percepción IIBB Mendoza",
-          "amount": 8000
-        }
-      ],
+      "otherTaxes": 8000,
       "total": 478581,
       "cae": "76391245873016",
       "caeDueDate": "2026-10-10"
