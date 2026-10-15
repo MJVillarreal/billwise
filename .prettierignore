@@ -3,3 +3,4 @@ dist
 .next
 coverage
 package-lock.json
+apps/web/public/samples

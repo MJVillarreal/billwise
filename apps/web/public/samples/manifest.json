@@ -1,0 +1,396 @@
+[
+  {
+    "id": "invoice-a-valid",
+    "file": "invoice-a-valid.pdf",
+    "scenario": {
+      "es": "Factura A correcta: todo en verde, lista sin revisión.",
+      "en": "Valid A invoice: every field checks out."
+    },
+    "expectedIssues": [],
+    "printed": {
+      "letter": "A",
+      "voucherType": 1,
+      "pointOfSale": 3,
+      "number": 12345,
+      "issueDate": "2026-09-30",
+      "issuer": {
+        "name": "Distribuidora Los Andes SRL",
+        "cuit": "30994512079",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 400000,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 57162
+        },
+        {
+          "rate": 10.5,
+          "amount": 13419
+        }
+      ],
+      "ivaContained": 0,
+      "otherTaxes": [
+        {
+          "description": "Percepción IIBB Mendoza",
+          "amount": 8000
+        }
+      ],
+      "total": 478581,
+      "cae": "76391245873016",
+      "caeDueDate": "2026-10-10"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-30",
+      "cuit": 30994512079,
+      "ptoVta": 3,
+      "tipoCmp": 1,
+      "nroCmp": 12345,
+      "importe": 478581,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76391245873016
+    }
+  },
+  {
+    "id": "invoice-b-final-consumer",
+    "file": "invoice-b-final-consumer.pdf",
+    "scenario": {
+      "es": "Factura B a consumidor final, con el IVA contenido informado.",
+      "en": "B invoice to a final consumer, showing the IVA included in the price."
+    },
+    "expectedIssues": [],
+    "printed": {
+      "letter": "B",
+      "voucherType": 6,
+      "pointOfSale": 2,
+      "number": 48127,
+      "issueDate": "2026-09-18",
+      "issuer": {
+        "name": "Bazar El Molino SA",
+        "cuit": "30993077263",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Consumidor Final",
+        "docType": 99,
+        "docNumber": "0"
+      },
+      "currency": "PES",
+      "netTaxed": 0,
+      "iva": [],
+      "ivaContained": 12810,
+      "otherTaxes": [],
+      "total": 73810,
+      "cae": "76385512094437",
+      "caeDueDate": "2026-09-28"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-18",
+      "cuit": 30993077263,
+      "ptoVta": 2,
+      "tipoCmp": 6,
+      "nroCmp": 48127,
+      "importe": 73810,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 99,
+      "nroDocRec": 0,
+      "tipoCodAut": "E",
+      "codAut": 76385512094437
+    }
+  },
+  {
+    "id": "invoice-c-monotributo",
+    "file": "invoice-c-monotributo.pdf",
+    "scenario": {
+      "es": "Factura C de monotributista: no discrimina IVA.",
+      "en": "C invoice from a small taxpayer (monotributo): no IVA breakdown."
+    },
+    "expectedIssues": [],
+    "printed": {
+      "letter": "C",
+      "voucherType": 11,
+      "pointOfSale": 1,
+      "number": 214,
+      "issueDate": "2026-09-05",
+      "issuer": {
+        "name": "Lucía Benítez",
+        "cuit": "27994826137",
+        "ivaCondition": "Responsable Monotributo"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 0,
+      "iva": [],
+      "ivaContained": 0,
+      "otherTaxes": [],
+      "total": 185000,
+      "cae": "76364870215529",
+      "caeDueDate": "2026-09-15"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-05",
+      "cuit": 27994826137,
+      "ptoVta": 1,
+      "tipoCmp": 11,
+      "nroCmp": 214,
+      "importe": 185000,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76364870215529
+    }
+  },
+  {
+    "id": "invoice-total-mismatch",
+    "file": "invoice-total-mismatch.pdf",
+    "scenario": {
+      "es": "El total impreso no cierra: neto + IVA ≠ total.",
+      "en": "The printed total does not add up: net + IVA ≠ total."
+    },
+    "expectedIssues": [
+      "total_mismatch"
+    ],
+    "printed": {
+      "letter": "A",
+      "voucherType": 1,
+      "pointOfSale": 5,
+      "number": 3391,
+      "issueDate": "2026-09-24",
+      "issuer": {
+        "name": "Bodega Cerro Azul SA",
+        "cuit": "30992334181",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 420000,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 88200
+        }
+      ],
+      "ivaContained": 0,
+      "otherTaxes": [],
+      "total": 505800,
+      "cae": "76388906631247",
+      "caeDueDate": "2026-10-04"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-24",
+      "cuit": 30992334181,
+      "ptoVta": 5,
+      "tipoCmp": 1,
+      "nroCmp": 3391,
+      "importe": 505800,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76388906631247
+    }
+  },
+  {
+    "id": "invoice-invalid-cuit",
+    "file": "invoice-invalid-cuit.pdf",
+    "scenario": {
+      "es": "El CUIT del emisor tiene mal el dígito verificador.",
+      "en": "The issuer's CUIT has a wrong check digit."
+    },
+    "expectedIssues": [
+      "invalid_cuit"
+    ],
+    "printed": {
+      "letter": "A",
+      "voucherType": 1,
+      "pointOfSale": 4,
+      "number": 7750,
+      "issueDate": "2026-09-12",
+      "issuer": {
+        "name": "Lavadero Industrial del Oeste SA",
+        "cuit": "30998745621",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 138000,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 28980
+        }
+      ],
+      "ivaContained": 0,
+      "otherTaxes": [],
+      "total": 166980,
+      "cae": "76379930148862",
+      "caeDueDate": "2026-09-22"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-12",
+      "cuit": 30998745621,
+      "ptoVta": 4,
+      "tipoCmp": 1,
+      "nroCmp": 7750,
+      "importe": 166980,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76379930148862
+    }
+  },
+  {
+    "id": "invoice-qr-mismatch",
+    "file": "invoice-qr-mismatch.pdf",
+    "scenario": {
+      "es": "El QR dice otro número de comprobante que el impreso: gana el QR y el campo queda dudoso.",
+      "en": "The QR has a different voucher number than the printed one: the QR wins and the field is flagged."
+    },
+    "expectedIssues": [
+      "qr_mismatch"
+    ],
+    "printed": {
+      "letter": "A",
+      "voucherType": 1,
+      "pointOfSale": 2,
+      "number": 827,
+      "issueDate": "2026-09-21",
+      "issuer": {
+        "name": "Imprenta Aconcagua SRL",
+        "cuit": "30996150948",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 128000,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 26880
+        }
+      ],
+      "ivaContained": 0,
+      "otherTaxes": [],
+      "total": 154880,
+      "cae": "76386011257734",
+      "caeDueDate": "2026-10-01"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-21",
+      "cuit": 30996150948,
+      "ptoVta": 2,
+      "tipoCmp": 1,
+      "nroCmp": 872,
+      "importe": 154880,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76386011257734
+    }
+  },
+  {
+    "id": "invoice-a-duplicate",
+    "file": "invoice-a-duplicate.pdf",
+    "scenario": {
+      "es": "La misma factura A subida de nuevo (copia DUPLICADO): se detecta como repetida.",
+      "en": "The same A invoice uploaded again (DUPLICADO copy): detected as a duplicate."
+    },
+    "expectedIssues": [
+      "duplicate"
+    ],
+    "printed": {
+      "letter": "A",
+      "voucherType": 1,
+      "pointOfSale": 3,
+      "number": 12345,
+      "issueDate": "2026-09-30",
+      "issuer": {
+        "name": "Distribuidora Los Andes SRL",
+        "cuit": "30994512079",
+        "ivaCondition": "IVA Responsable Inscripto"
+      },
+      "recipient": {
+        "name": "Restaurante La Higuera SRL",
+        "docType": 80,
+        "docNumber": "30991234566"
+      },
+      "currency": "PES",
+      "netTaxed": 400000,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 57162
+        },
+        {
+          "rate": 10.5,
+          "amount": 13419
+        }
+      ],
+      "ivaContained": 0,
+      "otherTaxes": [
+        {
+          "description": "Percepción IIBB Mendoza",
+          "amount": 8000
+        }
+      ],
+      "total": 478581,
+      "cae": "76391245873016",
+      "caeDueDate": "2026-10-10"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-09-30",
+      "cuit": 30994512079,
+      "ptoVta": 3,
+      "tipoCmp": 1,
+      "nroCmp": 12345,
+      "importe": 478581,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76391245873016
+    }
+  }
+]

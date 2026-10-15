@@ -19,6 +19,7 @@ apps/
   api/        NestJS API and background worker
 packages/
   shared/     Invoice parsing and validation logic shared by web and API
+  samples/    Generator of fictitious invoices for the demo and tests
 ```
 
 ## Getting started
@@ -37,12 +38,13 @@ The web app runs on http://localhost:3000 and the API on http://localhost:3001.
 
 ## Scripts
 
-| Command          | Description                       |
-| ---------------- | --------------------------------- |
-| `npm run build`  | Build all packages                |
-| `npm test`       | Run all tests                     |
-| `npm run lint`   | Lint all packages                 |
-| `npm run format` | Format the codebase with Prettier |
+| Command                    | Description                                                 |
+| -------------------------- | ----------------------------------------------------------- |
+| `npm run build`            | Build all packages                                          |
+| `npm run generate:samples` | Regenerate the sample invoices in `apps/web/public/samples` |
+| `npm test`                 | Run all tests                                               |
+| `npm run lint`             | Lint all packages                                           |
+| `npm run format`           | Format the codebase with Prettier                           |
 
 ## License
 
