@@ -1,8 +1,7 @@
 import { cuitCheckDigit, DOC_TYPES } from '@billwise/shared';
 import type { Issuer, Recipient, SampleInvoice } from './types.js';
 
-// Every company, person and number below is fictitious. CUITs use the 99 range so they do not
-// collide with real taxpayers.
+// Fictitious data. CUITs use the 99 range so they do not collide with real taxpayers.
 function cuit(firstTen: string, { wrongCheckDigit = false } = {}): string {
   const check = cuitCheckDigit(firstTen);
   if (check === null) throw new Error(`No valid check digit for ${firstTen}`);

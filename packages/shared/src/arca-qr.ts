@@ -23,7 +23,6 @@ export function encodeArcaQr(data: ArcaQrData): string {
   return `${ARCA_QR_URL}?p=${btoa(JSON.stringify(data))}`;
 }
 
-/** Decodes the text read from an invoice QR. Returns null when it is not a valid ARCA QR. */
 export function decodeArcaQr(text: string): ArcaQrData | null {
   let url: URL;
   try {

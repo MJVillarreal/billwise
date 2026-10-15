@@ -44,7 +44,6 @@ class Painter {
     this.text(value, center - font.widthOfTextAtSize(value, size) / 2, y, { size, bold });
   }
 
-  /** Bold label followed by a regular value, as printed on ARCA invoices. */
   field(label: string, value: string, x: number, y: number, size = 8.5) {
     this.text(label, x, y, { size, bold: true });
     this.text(value, x + this.fonts.bold.widthOfTextAtSize(label, size) + 3, y, { size });

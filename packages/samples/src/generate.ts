@@ -28,7 +28,6 @@ function qrPayload(invoice: SampleInvoice, totals: InvoiceTotals): ArcaQrData {
   };
 }
 
-/** What a correct reading of the printed document should return. */
 function printedFields(invoice: SampleInvoice, totals: InvoiceTotals) {
   return {
     letter: invoice.letter,

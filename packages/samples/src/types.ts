@@ -51,14 +51,11 @@ export interface SampleInvoice {
   otherTaxes: OtherTax[];
   cae: string;
   caeDueDate: string;
-  /** Values printed on the document that differ from the computed ones. */
   printed?: { total?: number; number?: number };
-  /** Fields of the QR payload that differ from the printed document. */
   qr?: Partial<ArcaQrData>;
 }
 
 export interface InvoiceTotals {
-  /** Net amount per IVA rate (A invoices). */
   netByRate: Partial<Record<IvaRate, number>>;
   ivaByRate: Partial<Record<IvaRate, number>>;
   netTaxed: number;
