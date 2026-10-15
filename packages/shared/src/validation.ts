@@ -12,8 +12,8 @@ const AMOUNT_TOLERANCE = 1;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 export interface ValidationOptions {
-  /** Today's date as YYYY-MM-DD. */
-  today: string;
+  /** Today's date as YYYY-MM-DD. Without it, future issue dates are not checked. */
+  today?: string;
   /** Voucher keys of invoices already loaded, to detect duplicates. */
   existingKeys?: ReadonlySet<string>;
 }
@@ -86,7 +86,7 @@ function checkIdentifiers(data: InvoiceData): ValidationIssue[] {
   return issues;
 }
 
-function checkDates(data: InvoiceData, today: string): ValidationIssue[] {
+function checkDates(data: InvoiceData, today?: string): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const { issueDate, caeDueDate } = data;
 
@@ -97,7 +97,7 @@ function checkDates(data: InvoiceData, today: string): ValidationIssue[] {
       code: 'invalid_format',
       params: { value: issueDate },
     });
-  } else if (issueDate && issueDate > today) {
+  } else if (issueDate && today && issueDate > today) {
     issues.push({ field: 'issueDate', severity: 'error', code: 'future_date' });
   }
 

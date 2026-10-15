@@ -88,6 +88,11 @@ describe('validateInvoice', () => {
       ]);
     });
 
+    it('skips the future date check without today', () => {
+      const data = invoiceA({ issueDate: '2026-10-16', caeDueDate: '2026-10-26' });
+      expect(validateInvoice(data, {}).issues).toEqual([]);
+    });
+
     it('rejects a CAE due date before the issue date', () => {
       expect(codes(invoiceA({ caeDueDate: '2026-09-29' }))).toEqual(['cae_due_before_issue']);
     });
