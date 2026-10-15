@@ -37,15 +37,26 @@ npm run dev:web
 
 The web app runs on http://localhost:3000 and the API on http://localhost:3001.
 
+## Try the reader
+
+Read any invoice PDF from the command line. Everything runs locally; nothing is sent anywhere.
+
+```bash
+npm run read -- apps/web/public/samples/invoice-qr-mismatch.pdf --image highlights.png
+```
+
+It prints every field with its status (ok, warning or error) and whether it came from the printed text or the ARCA QR. With `--image`, it saves the first page with the fields highlighted.
+
 ## Scripts
 
-| Command                    | Description                                                 |
-| -------------------------- | ----------------------------------------------------------- |
-| `npm run build`            | Build all packages                                          |
-| `npm run generate:samples` | Regenerate the sample invoices in `apps/web/public/samples` |
-| `npm test`                 | Run all tests                                               |
-| `npm run lint`             | Lint all packages                                           |
-| `npm run format`           | Format the codebase with Prettier                           |
+| Command                      | Description                                                 |
+| ---------------------------- | ----------------------------------------------------------- |
+| `npm run build`              | Build all packages                                          |
+| `npm run generate:samples`   | Regenerate the sample invoices in `apps/web/public/samples` |
+| `npm run read -- <file.pdf>` | Read an invoice PDF and print the extracted fields          |
+| `npm test`                   | Run all tests                                               |
+| `npm run lint`               | Lint all packages                                           |
+| `npm run format`             | Format the codebase with Prettier                           |
 
 ## License
 

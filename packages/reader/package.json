@@ -18,7 +18,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "oxlint src/",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "read": "tsx src/cli.ts"
   },
   "dependencies": {
     "@billwise/shared": "*",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^24.19.2",
     "oxlint": "^1.58.0",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.2",
     "vitest": "^4.1.2"
   }
