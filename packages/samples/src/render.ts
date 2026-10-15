@@ -242,9 +242,9 @@ async function drawFooter(
 ) {
   p.line(MARGIN, 150, RIGHT, 150);
 
-  const png = await QRCode.toBuffer(qrText, { errorCorrectionLevel: 'M', margin: 1, width: 360 });
+  const png = await QRCode.toBuffer(qrText, { errorCorrectionLevel: 'M', margin: 4, width: 400 });
   const qrImage = await pdf.embedPng(png);
-  page.drawImage(qrImage, { x: MARGIN, y: 48, width: 92, height: 92 });
+  page.drawImage(qrImage, { x: MARGIN - 8, y: 40, width: 104, height: 104 });
 
   p.text('Comprobante de ejemplo', MARGIN + 104, 118, { size: 11, bold: true });
   p.text(
