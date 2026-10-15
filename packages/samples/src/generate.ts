@@ -1,6 +1,7 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { encodeArcaQr } from '@billwise/shared';
+import { buildHistory } from './history.js';
 import { sampleInvoices } from './invoices.js';
 import { printedInvoice, qrPayload } from './manifest.js';
 import { renderInvoice } from './render.js';
@@ -37,6 +38,9 @@ async function main() {
   }
 
   await writeFile(resolve(OUT_DIR, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  const history = buildHistory();
+  await writeFile(resolve(OUT_DIR, 'history.json'), `${JSON.stringify(history, null, 2)}\n`);
+  console.log(`  history.json (${history.length} invoices)`);
   console.log(`Generated ${manifest.length} invoices in ${OUT_DIR}`);
 }
 

@@ -2,13 +2,13 @@ import { cuitCheckDigit, DOC_TYPES } from '@billwise/shared';
 import type { Issuer, Recipient, SampleInvoice } from './types.js';
 
 // Fictitious data. CUITs use the 99 range so they do not collide with real taxpayers.
-function cuit(firstTen: string, { wrongCheckDigit = false } = {}): string {
+export function cuit(firstTen: string, { wrongCheckDigit = false } = {}): string {
   const check = cuitCheckDigit(firstTen);
   if (check === null) throw new Error(`No valid check digit for ${firstTen}`);
   return `${firstTen}${wrongCheckDigit ? (check + 1) % 10 : check}`;
 }
 
-const restaurant: Recipient = {
+export const restaurant: Recipient = {
   name: 'Restaurante La Higuera SRL',
   docType: DOC_TYPES.CUIT,
   docNumber: cuit('3099123456'),
@@ -23,7 +23,7 @@ const finalConsumer: Recipient = {
   ivaCondition: 'Consumidor Final',
 };
 
-const losAndes: Issuer = {
+export const losAndes: Issuer = {
   name: 'Distribuidora Los Andes SRL',
   cuit: cuit('3099451207'),
   address: 'Ruta 40 Km 3520 - Luján de Cuyo, Mendoza',
@@ -32,7 +32,7 @@ const losAndes: Issuer = {
   activityStart: '2014-03-01',
 };
 
-const cerroAzul: Issuer = {
+export const cerroAzul: Issuer = {
   name: 'Bodega Cerro Azul SA',
   cuit: cuit('3099233418'),
   address: 'Carril Godoy Cruz 4410 - Maipú, Mendoza',
@@ -50,7 +50,7 @@ const lavadero: Issuer = {
   activityStart: '2018-05-02',
 };
 
-const aconcagua: Issuer = {
+export const aconcagua: Issuer = {
   name: 'Imprenta Aconcagua SRL',
   cuit: cuit('3099615094'),
   address: 'Patricias Mendocinas 2210 - Mendoza',
@@ -59,7 +59,7 @@ const aconcagua: Issuer = {
   activityStart: '2011-11-10',
 };
 
-const elMolino: Issuer = {
+export const elMolino: Issuer = {
   name: 'Bazar El Molino SA',
   cuit: cuit('3099307726'),
   address: 'Av. Las Heras 640 - Mendoza',
@@ -68,7 +68,7 @@ const elMolino: Issuer = {
   activityStart: '2016-02-20',
 };
 
-const luciaBenitez: Issuer = {
+export const luciaBenitez: Issuer = {
   name: 'Lucía Benítez',
   cuit: cuit('2799482613'),
   address: 'Belgrano 1388 - Godoy Cruz, Mendoza',

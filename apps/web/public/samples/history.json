@@ -1,0 +1,1084 @@
+[
+  {
+    "id": "history-1-2026-05",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011897",
+      "issueDate": "2026-05-13",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 354000,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 48321
+        },
+        {
+          "rate": 10.5,
+          "amount": 13009.5
+        }
+      ],
+      "otherTaxes": 7080,
+      "total": 422410.5,
+      "cae": "76618475218303",
+      "caeDueDate": "2026-05-23"
+    }
+  },
+  {
+    "id": "history-4-2026-05",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00000803",
+      "issueDate": "2026-05-14",
+      "issuer": {
+        "cuit": "30996150948",
+        "name": "Imprenta Aconcagua SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 98900,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 20769
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 119669,
+      "cae": "76948066723067",
+      "caeDueDate": "2026-05-24"
+    }
+  },
+  {
+    "id": "history-6-2026-05",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000216",
+      "issueDate": "2026-05-15",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 102400,
+      "cae": "76605082361958",
+      "caeDueDate": "2026-05-25"
+    }
+  },
+  {
+    "id": "history-5-2026-05",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047748",
+      "issueDate": "2026-05-22",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 32300,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 6783
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 39083,
+      "cae": "76935886832186",
+      "caeDueDate": "2026-06-01"
+    }
+  },
+  {
+    "id": "history-3-2026-05",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003281",
+      "issueDate": "2026-05-23",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 232300,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 48783
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 281083,
+      "cae": "76177419590065",
+      "caeDueDate": "2026-06-02"
+    }
+  },
+  {
+    "id": "history-2-2026-05",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005133",
+      "issueDate": "2026-05-26",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 317700,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 33358.5
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 351058.5,
+      "cae": "76274095760658",
+      "caeDueDate": "2026-06-05"
+    }
+  },
+  {
+    "id": "history-1-2026-06",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011925",
+      "issueDate": "2026-06-05",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 333200,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 45481.8
+        },
+        {
+          "rate": 10.5,
+          "amount": 12245.1
+        }
+      ],
+      "otherTaxes": 6664,
+      "total": 397590.9,
+      "cae": "76801408699015",
+      "caeDueDate": "2026-06-15"
+    }
+  },
+  {
+    "id": "history-6-2026-06",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000230",
+      "issueDate": "2026-06-06",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 111700,
+      "cae": "76162930032471",
+      "caeDueDate": "2026-06-16"
+    }
+  },
+  {
+    "id": "history-2-2026-06",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005160",
+      "issueDate": "2026-06-12",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 231600,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 24318
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 255918,
+      "cae": "76842450638534",
+      "caeDueDate": "2026-06-22"
+    }
+  },
+  {
+    "id": "history-5-2026-06",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047751",
+      "issueDate": "2026-06-13",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 71500,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 15015
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 86515,
+      "cae": "76242610811721",
+      "caeDueDate": "2026-06-23"
+    }
+  },
+  {
+    "id": "history-3-2026-06",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003316",
+      "issueDate": "2026-06-27",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 330100,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 69321
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 399421,
+      "cae": "76767707573715",
+      "caeDueDate": "2026-07-07"
+    }
+  },
+  {
+    "id": "history-1-2026-07",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011930",
+      "issueDate": "2026-07-08",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 290200,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 39612.3
+        },
+        {
+          "rate": 10.5,
+          "amount": 10664.85
+        }
+      ],
+      "otherTaxes": 5804,
+      "total": 346281.15,
+      "cae": "76619580592727",
+      "caeDueDate": "2026-07-18"
+    }
+  },
+  {
+    "id": "history-2-2026-07",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005165",
+      "issueDate": "2026-07-09",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 345400,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 36267
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 381667,
+      "cae": "76040804988238",
+      "caeDueDate": "2026-07-19"
+    }
+  },
+  {
+    "id": "history-3-2026-07",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003337",
+      "issueDate": "2026-07-17",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 288500,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 60585
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 349085,
+      "cae": "76789313097717",
+      "caeDueDate": "2026-07-27"
+    }
+  },
+  {
+    "id": "history-5-2026-07",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047774",
+      "issueDate": "2026-07-23",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 112400,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 23604
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 136004,
+      "cae": "76192628156393",
+      "caeDueDate": "2026-08-02"
+    }
+  },
+  {
+    "id": "history-4-2026-07",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00000841",
+      "issueDate": "2026-07-25",
+      "issuer": {
+        "cuit": "30996150948",
+        "name": "Imprenta Aconcagua SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 41600,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 8736
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 50336,
+      "cae": "76619292335584",
+      "caeDueDate": "2026-08-04"
+    }
+  },
+  {
+    "id": "history-6-2026-07",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000235",
+      "issueDate": "2026-07-25",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 124700,
+      "cae": "76399197353282",
+      "caeDueDate": "2026-08-04"
+    }
+  },
+  {
+    "id": "history-5-2026-08",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047813",
+      "issueDate": "2026-08-03",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 74700,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 15687
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 90387,
+      "cae": "76842167465947",
+      "caeDueDate": "2026-08-13"
+    }
+  },
+  {
+    "id": "history-2-2026-08",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005195",
+      "issueDate": "2026-08-10",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 319200,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 33516
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 352716,
+      "cae": "76394907274981",
+      "caeDueDate": "2026-08-20"
+    }
+  },
+  {
+    "id": "history-6-2026-08",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000268",
+      "issueDate": "2026-08-10",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 176700,
+      "cae": "76639885843498",
+      "caeDueDate": "2026-08-20"
+    }
+  },
+  {
+    "id": "history-1-2026-08",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011939",
+      "issueDate": "2026-08-11",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 307500,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 41973.75
+        },
+        {
+          "rate": 10.5,
+          "amount": 11300.63
+        }
+      ],
+      "otherTaxes": 6150,
+      "total": 366924.38,
+      "cae": "76331060542259",
+      "caeDueDate": "2026-08-21"
+    }
+  },
+  {
+    "id": "history-3-2026-08",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003364",
+      "issueDate": "2026-08-21",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 322900,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 67809
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 390709,
+      "cae": "76968117439653",
+      "caeDueDate": "2026-08-31"
+    }
+  },
+  {
+    "id": "history-5-2026-09",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047842",
+      "issueDate": "2026-09-07",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 59000,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 12390
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 71390,
+      "cae": "76855895742774",
+      "caeDueDate": "2026-09-17"
+    }
+  },
+  {
+    "id": "history-1-2026-09",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011962",
+      "issueDate": "2026-09-11",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 501000,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 68386.5
+        },
+        {
+          "rate": 10.5,
+          "amount": 18411.75
+        }
+      ],
+      "otherTaxes": 10020,
+      "total": 597818.25,
+      "cae": "76001731545897",
+      "caeDueDate": "2026-09-21"
+    }
+  },
+  {
+    "id": "history-3-2026-09",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003373",
+      "issueDate": "2026-09-11",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 153900,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 32319
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 186219,
+      "cae": "76079917856026",
+      "caeDueDate": "2026-09-21"
+    }
+  },
+  {
+    "id": "history-6-2026-09",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000280",
+      "issueDate": "2026-09-21",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 124600,
+      "cae": "76475209939293",
+      "caeDueDate": "2026-10-01"
+    }
+  },
+  {
+    "id": "history-4-2026-09",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00000866",
+      "issueDate": "2026-09-24",
+      "issuer": {
+        "cuit": "30996150948",
+        "name": "Imprenta Aconcagua SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 63400,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 13314
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 76714,
+      "cae": "76551894145784",
+      "caeDueDate": "2026-10-04"
+    }
+  },
+  {
+    "id": "history-2-2026-09",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005221",
+      "issueDate": "2026-09-27",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 301800,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 31689
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 333489,
+      "cae": "76365102043375",
+      "caeDueDate": "2026-10-07"
+    }
+  },
+  {
+    "id": "history-2-2026-10",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00001",
+      "number": "00005230",
+      "issueDate": "2026-10-01",
+      "issuer": {
+        "cuit": "30995500171",
+        "name": "Carnicería Don Ramón SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 358700,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 10.5,
+          "amount": 37663.5
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 396363.5,
+      "cae": null,
+      "caeDueDate": "2026-10-11"
+    }
+  },
+  {
+    "id": "history-4-2026-10",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00000901",
+      "issueDate": "2026-10-01",
+      "issuer": {
+        "cuit": "30996150948",
+        "name": "Imprenta Aconcagua SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 131100,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 27531
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 158631,
+      "cae": "76963510534726",
+      "caeDueDate": "2026-10-11"
+    }
+  },
+  {
+    "id": "history-1-2026-10",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00004",
+      "number": "00011993",
+      "issueDate": "2026-10-03",
+      "issuer": {
+        "cuit": "30994512079",
+        "name": "Distribuidora Los Andes SRL"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 346300,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 47269.95
+        },
+        {
+          "rate": 10.5,
+          "amount": 12726.53
+        }
+      ],
+      "otherTaxes": 6926,
+      "total": 413222.48,
+      "cae": null,
+      "caeDueDate": "2026-10-13"
+    }
+  },
+  {
+    "id": "history-5-2026-10",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00003",
+      "number": "00047879",
+      "issueDate": "2026-10-03",
+      "issuer": {
+        "cuit": "30993077263",
+        "name": "Bazar El Molino SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 84200,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 17682
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 101882,
+      "cae": "76048995611723",
+      "caeDueDate": "2026-10-13"
+    }
+  },
+  {
+    "id": "history-6-2026-10",
+    "data": {
+      "voucherType": 11,
+      "pointOfSale": "00002",
+      "number": "00000286",
+      "issueDate": "2026-10-03",
+      "issuer": {
+        "cuit": "27994826137",
+        "name": "Lucía Benítez"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": null,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [],
+      "otherTaxes": 0,
+      "total": 95200,
+      "cae": "76958534323843",
+      "caeDueDate": "2026-10-13"
+    }
+  },
+  {
+    "id": "history-3-2026-10",
+    "data": {
+      "voucherType": 1,
+      "pointOfSale": "00006",
+      "number": "00003382",
+      "issueDate": "2026-10-11",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 428100,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 89901
+        }
+      ],
+      "otherTaxes": 0,
+      "total": 516501,
+      "cae": "76170384838711",
+      "caeDueDate": "2026-10-21"
+    }
+  }
+]
