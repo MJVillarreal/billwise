@@ -33,3 +33,6 @@ Thumbs.db
 
 # reader output
 highlights*.png
+
+# pdf.js assets copied at dev/build time
+apps/web/public/pdfjs/
