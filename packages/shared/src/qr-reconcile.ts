@@ -100,6 +100,10 @@ export function reconcileWithQr(printed: InvoiceData, qr: ArcaQrData): Reconcile
     });
   }
 
+  if (data.recipient.docType === null && qr.tipoDocRec !== undefined) {
+    data.recipient.docType = qr.tipoDocRec;
+  }
+
   for (const { field, printed: value, qr: qrValue, same, apply } of comparisons) {
     if (value !== null && value !== '' && same(value, qrValue)) continue;
 

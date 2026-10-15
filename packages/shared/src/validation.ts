@@ -184,7 +184,9 @@ function checkDuplicate(data: InvoiceData, existingKeys?: ReadonlySet<string>): 
   return [];
 }
 
-function worstSeverityByField(issues: ValidationIssue[]): Partial<Record<InvoiceField, Severity>> {
+export function worstSeverityByField(
+  issues: ValidationIssue[],
+): Partial<Record<InvoiceField, Severity>> {
   const fields: Partial<Record<InvoiceField, Severity>> = {};
   for (const issue of issues) {
     if (fields[issue.field] !== 'error') fields[issue.field] = issue.severity;

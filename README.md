@@ -19,6 +19,7 @@ apps/
   api/        NestJS API and background worker
 packages/
   shared/     Invoice parsing and validation logic shared by web and API
+  reader/     Reads invoice PDFs with pdf.js: text with positions and the ARCA QR
   samples/    Generator of fictitious invoices for the demo and tests
 ```
 

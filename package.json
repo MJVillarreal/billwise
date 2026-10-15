@@ -12,11 +12,11 @@
     "node": ">=24"
   },
   "scripts": {
-    "postinstall": "npm run build -w @billwise/shared",
+    "postinstall": "npm run build -w @billwise/shared -w @billwise/reader",
     "dev:web": "npm run dev -w @billwise/web",
     "dev:api": "npm run start:dev -w @billwise/api",
     "generate:samples": "npm run generate -w @billwise/samples",
-    "build": "npm run build -w @billwise/shared && npm run build -w @billwise/api -w @billwise/web",
+    "build": "npm run build -w @billwise/shared && npm run build -w @billwise/reader && npm run build -w @billwise/api -w @billwise/web",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "format": "prettier --write .",

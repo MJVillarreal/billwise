@@ -81,6 +81,15 @@ describe('reconcileWithQr', () => {
     expect(result.data.recipient).toEqual(printed.recipient);
   });
 
+  it('takes the recipient document type from the QR when it is missing', () => {
+    const recipient = { docType: null, docNumber: null, name: 'Consumidor Final' };
+    const result = reconcileWithQr(
+      { ...printed, recipient },
+      { ...qr, tipoDocRec: 99, nroDocRec: 0 },
+    );
+    expect(result.data.recipient.docType).toBe(99);
+  });
+
   it('does not modify the input', () => {
     const input = { ...printed, number: '00012354' };
     reconcileWithQr(input, qr);
