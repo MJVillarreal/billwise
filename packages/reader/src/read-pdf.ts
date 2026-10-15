@@ -25,6 +25,7 @@ export interface ReadPdfOptions {
   /** Where pdf.js finds its standard fonts, needed to render pages. */
   standardFontDataUrl?: string;
   maxPages?: number;
+  onStage?: (stage: 'text' | 'qr') => void;
 }
 
 export interface PdfPage {
@@ -55,6 +56,7 @@ export async function readPdf(
     const pages: PdfPage[] = [];
     const items: TextItem[] = [];
 
+    options.onStage?.('text');
     for (let number = 1; number <= pageCount; number++) {
       const page = await doc.getPage(number);
       const { width, height } = page.getViewport({ scale: 1 });
@@ -62,6 +64,7 @@ export async function readPdf(
       items.push(...(await textItems(page, number, height)));
     }
 
+    options.onStage?.('qr');
     return { pages, items, qrText: await findQr(doc, pageCount) };
   } finally {
     await task.destroy();
