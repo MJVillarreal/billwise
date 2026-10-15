@@ -118,6 +118,24 @@ export interface Messages {
     string
   >;
   issues: Record<IssueCode, IssueMessage>;
+  upload: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    drop: string;
+    choose: string;
+    privacy: string;
+    limits: string;
+    photosLater: string;
+    notPdf: string;
+    tooLarge: string;
+    another: string;
+    trySamples: string;
+    failed: { title: string; text: string };
+    unreadable: Record<'scanned' | 'unknown', { title: string; text: string }>;
+    galleryCta: { title: string; text: string; action: string };
+    qrOnly: string;
+  };
   demoCompany: { label: string; fictitious: string };
   footer: string;
 }
@@ -304,6 +322,42 @@ const es: Messages = {
       `En el papel dice ${printed} y el QR dice ${qr}. Se usa el QR.`,
     duplicate: () => 'Esta factura ya fue cargada.',
   },
+  upload: {
+    eyebrow: 'Tu factura',
+    title: 'Probá con una factura tuya',
+    subtitle:
+      'Subí una factura electrónica en PDF, tal como la descargás de ARCA o te la manda tu proveedor.',
+    drop: 'Arrastrá el PDF acá',
+    choose: 'Elegir archivo',
+    privacy: 'Tu archivo no sale de tu dispositivo: se lee en este navegador.',
+    limits: 'Solo PDF, hasta 10 MB.',
+    photosLater: 'Las fotos y los escaneos se van a poder leer con IA más adelante.',
+    notPdf: 'Ese archivo no es un PDF.',
+    tooLarge: 'El archivo pesa más de 10 MB.',
+    another: 'Subir otra',
+    trySamples: 'Ver los ejemplos',
+    failed: {
+      title: 'No se pudo abrir el archivo',
+      text: 'Puede estar dañado o protegido con contraseña.',
+    },
+    unreadable: {
+      scanned: {
+        title: 'Parece un escaneo o una foto',
+        text: 'El PDF no tiene texto ni un QR que se pueda leer. Este tipo de archivo se va a procesar con IA.',
+      },
+      unknown: {
+        title: 'No reconocimos el formato',
+        text: 'No encontramos el QR de ARCA ni los datos de una factura electrónica. Preferimos avisarte antes que mostrarte datos inventados.',
+      },
+    },
+    qrOnly:
+      'El PDF es una imagen, sin texto: los datos salen del QR de ARCA. La razón social y el detalle de IVA se van a poder leer con IA.',
+    galleryCta: {
+      title: '¿Tenés una factura en PDF?',
+      text: 'Probá Billwise con una factura tuya. Se lee en tu navegador y no sale de tu dispositivo.',
+      action: 'Subir factura',
+    },
+  },
   demoCompany: { label: 'Empresa de la demo', fictitious: 'ficticia' },
   footer:
     'Proyecto de portfolio. Las facturas de la demo son ficticias y no tienen validez fiscal.',
@@ -484,6 +538,41 @@ const en: Messages = {
     qr_mismatch: ({ printed, qr }) =>
       `The paper says ${printed} and the QR says ${qr}. The QR is used.`,
     duplicate: () => 'This invoice was already loaded.',
+  },
+  upload: {
+    eyebrow: 'Your invoice',
+    title: 'Try one of your invoices',
+    subtitle: 'Upload an electronic invoice PDF, as downloaded from ARCA or sent by your supplier.',
+    drop: 'Drop the PDF here',
+    choose: 'Choose file',
+    privacy: 'Your file never leaves your device: it is read in this browser.',
+    limits: 'PDF only, up to 10 MB.',
+    photosLater: 'Photos and scans will be read with AI later on.',
+    notPdf: 'That file is not a PDF.',
+    tooLarge: 'The file is larger than 10 MB.',
+    another: 'Upload another',
+    trySamples: 'See the samples',
+    failed: {
+      title: 'The file could not be opened',
+      text: 'It may be damaged or password protected.',
+    },
+    unreadable: {
+      scanned: {
+        title: 'This looks like a scan or a photo',
+        text: 'The PDF has no readable text or QR code. Files like this will be processed with AI.',
+      },
+      unknown: {
+        title: 'Layout not recognized',
+        text: 'We could not find the ARCA QR code or the fields of an electronic invoice. We would rather tell you than show made-up data.',
+      },
+    },
+    qrOnly:
+      'This PDF is an image with no text: the data comes from the ARCA QR code. The company name and IVA breakdown will be read with AI.',
+    galleryCta: {
+      title: 'Have an invoice PDF?',
+      text: 'Try Billwise with one of your own invoices. It is read in your browser and never leaves your device.',
+      action: 'Upload invoice',
+    },
   },
   demoCompany: { label: 'Demo company', fictitious: 'fictitious' },
   footer: 'Portfolio project. Demo invoices are fictitious and have no tax validity.',

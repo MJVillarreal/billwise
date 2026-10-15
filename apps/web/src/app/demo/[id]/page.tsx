@@ -26,7 +26,7 @@ async function Sample({ params }: { params: PageProps<'/demo/[id]'>['params'] })
   return (
     <InvoiceReview
       key={sample.id}
-      sample={sample}
+      source={{ kind: 'sample', sample }}
       existingKeys={keysLoadedBefore(id)}
       nextId={nextId}
     />

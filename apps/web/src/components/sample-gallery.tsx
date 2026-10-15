@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Info } from 'lucide-react';
+import { ArrowRight, FileUp, Info } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/language-provider';
@@ -66,6 +66,20 @@ export function SampleGallery({ samples }: { samples: Sample[] }) {
           <Info className="mt-0.5 size-4 shrink-0" />
           {t.gallery.batchNote}
         </p>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center">
+          <div>
+            <h2 className="font-semibold">{t.upload.galleryCta.title}</h2>
+            <p className="mt-1 text-sm text-muted">{t.upload.galleryCta.text}</p>
+          </div>
+          <Link
+            href="/demo/upload"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold hover:border-brand/50 hover:text-brand"
+          >
+            <FileUp className="size-4" />
+            {t.upload.galleryCta.action}
+          </Link>
+        </div>
       </div>
     </div>
   );

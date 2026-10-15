@@ -9,6 +9,7 @@ import {
   type Severity,
   type ValidationIssue,
   validateInvoice,
+  voucherKey,
   worstSeverityByField,
 } from '@billwise/shared';
 import {
@@ -19,6 +20,9 @@ import {
   Check,
   CheckCircle2,
   CircleAlert,
+  FileQuestion,
+  Info,
+  Upload,
   XCircle,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -34,18 +38,25 @@ import { ProcessingSteps, STAGES } from './processing-steps';
 const MIN_STAGE_MS = 450;
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+export type ReviewSource =
+  { kind: 'sample'; sample: Sample } | { kind: 'upload'; name: string; data: Uint8Array };
+
 interface InvoiceReviewProps {
-  sample: Sample;
+  source: ReviewSource;
   existingKeys: string[];
-  nextId: string | null;
+  nextId?: string | null;
+  onRestart?: () => void;
 }
 
 type Status = Severity | 'ok';
 
-export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewProps) {
+export function InvoiceReview({ source, existingKeys, nextId, onRestart }: InvoiceReviewProps) {
   const { t } = useLanguage();
+  const fileName = source.kind === 'sample' ? source.sample.file : source.name;
   const [stage, setStage] = useState(0);
   const [failed, setFailed] = useState(false);
+  const [unreadable, setUnreadable] = useState<'scanned' | 'unknown' | null>(null);
+  const [qrOnly, setQrOnly] = useState(false);
   const [bytes, setBytes] = useState<Uint8Array | null>(null);
   const [result, setResult] = useState<ProcessResult | null>(null);
   const [values, setValues] = useState<FormValues>({});
@@ -73,9 +84,14 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
         const { standardFontDataUrl } = configurePdfjs();
         const now = new Date().toISOString().slice(0, 10);
         show(0);
-        const response = await fetch(`/samples/${sample.file}`);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = new Uint8Array(await response.arrayBuffer());
+        let data: Uint8Array;
+        if (source.kind === 'sample') {
+          const response = await fetch(`/samples/${source.sample.file}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          data = new Uint8Array(await response.arrayBuffer());
+        } else {
+          data = source.data;
+        }
         await advance(1);
 
         const pdf = await readPdf(data.slice(), {
@@ -87,6 +103,11 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
         await advance(4);
         await advance(STAGES.length);
         if (cancelled) return;
+        if (!processed.recognized) {
+          setUnreadable(pdf.items.length === 0 ? 'scanned' : 'unknown');
+          return;
+        }
+        setQrOnly(pdf.items.length === 0);
         setToday(now);
         setBytes(data);
         setResult(processed);
@@ -100,7 +121,7 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
     return () => {
       cancelled = true;
     };
-  }, [sample.file, existingKeys]);
+  }, [source, existingKeys]);
 
   const live = useMemo(() => {
     if (!result) return null;
@@ -114,20 +135,46 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
     return { data, issues, fields: worstSeverityByField(issues) };
   }, [result, values, editedKeys, today, existingKeys]);
 
-  if (failed) {
+  const restartActions = (
+    <div className="mt-6 flex flex-wrap justify-center gap-3">
+      {onRestart && (
+        <button
+          type="button"
+          onClick={onRestart}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark"
+        >
+          <Upload className="size-4" />
+          {t.upload.another}
+        </button>
+      )}
+      <Link
+        href="/demo"
+        className="inline-flex items-center rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50"
+      >
+        {t.upload.trySamples}
+      </Link>
+    </div>
+  );
+
+  if (failed || unreadable) {
+    const message = failed ? t.upload.failed : t.upload.unreadable[unreadable!];
     return (
       <div className="mx-auto max-w-md px-4 py-16 text-center">
-        <XCircle className="mx-auto size-10 text-red-500" />
-        <p className="mt-4 font-medium">{t.processing.failed}</p>
-        <Link href="/demo" className="mt-6 inline-block font-semibold text-brand">
-          {t.review.back}
-        </Link>
+        {failed ? (
+          <XCircle className="mx-auto size-10 text-red-500" />
+        ) : (
+          <FileQuestion className="mx-auto size-10 text-amber-500" />
+        )}
+        <p className="mt-4 font-semibold">{message.title}</p>
+        <p className="mt-2 text-sm text-muted">{message.text}</p>
+        <p className="mt-1 truncate text-xs text-muted">{fileName}</p>
+        {restartActions}
       </div>
     );
   }
 
   if (!result || !live || !bytes) {
-    return <ProcessingSteps current={stage} fileName={sample.file} />;
+    return <ProcessingSteps current={stage} fileName={fileName} />;
   }
 
   const statusOf = (field: InvoiceField): Status => live.fields[field] ?? 'ok';
@@ -146,10 +193,13 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
 
   const confirm = () => {
     saveInvoice({
-      id: `demo-${sample.id}`,
+      id:
+        source.kind === 'sample'
+          ? `demo-${source.sample.id}`
+          : `upload-${voucherKey(live.data) ?? Date.now()}`,
       data: live.data,
       origin: 'demo',
-      sampleId: sample.id,
+      sampleId: source.kind === 'sample' ? source.sample.id : undefined,
       confirmed: true,
     });
     setSaved(true);
@@ -173,11 +223,12 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
     onFocus: () => field && result.locations[field] && setActiveField(field),
     status: field ? statusOf(field) : ('ok' as Status),
     issues: field ? live.issues.filter((issue) => issue.field === field) : [],
-    source: field
-      ? result.fromQr.includes(field)
-        ? t.review.sources.qr
-        : t.review.sources.text
-      : null,
+    source:
+      field && values[key]
+        ? result.fromQr.includes(field)
+          ? t.review.sources.qr
+          : t.review.sources.text
+        : null,
     edited: editedKeys.includes(key),
     active: field !== null && field === activeField,
     field,
@@ -189,13 +240,24 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
     <div className="mx-auto w-full max-w-7xl px-4 py-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <Link
-            href="/demo"
-            className="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-navy"
-          >
-            <ArrowLeft className="size-4" />
-            {t.review.back}
-          </Link>
+          {onRestart ? (
+            <button
+              type="button"
+              onClick={onRestart}
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-navy"
+            >
+              <ArrowLeft className="size-4" />
+              {t.upload.another}
+            </button>
+          ) : (
+            <Link
+              href="/demo"
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-navy"
+            >
+              <ArrowLeft className="size-4" />
+              {t.review.back}
+            </Link>
+          )}
           <h1 className="mt-2 text-2xl font-bold tracking-tight">
             {t.review.invoice} {letter ?? '?'} {live.data.pointOfSale ?? '-----'}-
             {live.data.number ?? '--------'}
@@ -238,6 +300,13 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
         {t.review.summary(errors, warnings)}
         {errors > 0 && ` ${t.review.confirmDisabled}`}
       </p>
+
+      {qrOnly && (
+        <div className="mt-4 flex items-start gap-2 rounded-lg border border-brand/20 bg-ice px-4 py-3 text-sm text-slate-700">
+          <Info className="mt-0.5 size-4 shrink-0 text-brand" />
+          {t.upload.qrOnly}
+        </div>
+      )}
 
       {saved && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
