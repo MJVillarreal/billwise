@@ -6,7 +6,7 @@ type IssueMessage = (params: Record<string, string | number>) => string;
 
 export interface Messages {
   locale: string;
-  nav: { samples: string; howItWorks: string; github: string };
+  nav: { samples: string; invoices: string; dashboard: string; howItWorks: string; github: string };
   landing: {
     eyebrow: string;
     title: string;
@@ -35,6 +35,11 @@ export interface Messages {
     invoice: string;
     back: string;
     next: string;
+    confirm: string;
+    saved: string;
+    savedMessage: string;
+    viewInvoices: string;
+    confirmDisabled: string;
     status: { ready: string; review: string; errors: string };
     summary: (errors: number, warnings: number) => string;
     sections: {
@@ -55,6 +60,59 @@ export interface Messages {
     noIva: string;
     page: (n: number) => string;
   };
+  invoices: {
+    title: string;
+    subtitle: string;
+    count: (shown: number, total: number) => string;
+    selected: (n: number) => string;
+    exportExcel: string;
+    exportCsv: string;
+    exportHint: string;
+    reset: string;
+    resetConfirm: string;
+    filters: {
+      status: string;
+      supplier: string;
+      month: string;
+      all: string;
+      allSuppliers: string;
+      allMonths: string;
+    };
+    statuses: { ready: string; review: string; error: string };
+    columns: {
+      date: string;
+      voucher: string;
+      supplier: string;
+      cuit: string;
+      net: string;
+      iva: string;
+      otherTaxes: string;
+      total: string;
+      cae: string;
+      status: string;
+    };
+    demoBadge: string;
+    empty: string;
+    selectAll: string;
+  };
+  dashboard: {
+    title: string;
+    subtitle: string;
+    totalSpend: string;
+    ivaCredit: string;
+    ivaCreditHint: string;
+    invoiceCount: string;
+    pending: string;
+    pendingLink: string;
+    byMonth: string;
+    byMonthHint: string;
+    topSuppliers: string;
+    topSuppliersHint: string;
+    showData: string;
+    month: string;
+    supplier: string;
+    amount: string;
+  };
   fields: Record<
     Exclude<InvoiceField, 'invoice'> | 'issuerName' | 'recipientName' | 'otherTaxes',
     string
@@ -65,7 +123,13 @@ export interface Messages {
 
 const es: Messages = {
   locale: 'es-AR',
-  nav: { samples: 'Ejemplos', howItWorks: 'Cómo funciona', github: 'GitHub' },
+  nav: {
+    samples: 'Ejemplos',
+    invoices: 'Facturas',
+    dashboard: 'Dashboard',
+    howItWorks: 'Cómo funciona',
+    github: 'GitHub',
+  },
   landing: {
     eyebrow: 'Procesamiento inteligente de facturas',
     title: 'De la factura al dato,',
@@ -117,6 +181,11 @@ const es: Messages = {
     invoice: 'Factura',
     back: 'Ejemplos',
     next: 'Siguiente ejemplo',
+    confirm: 'Confirmar',
+    saved: 'Confirmada',
+    savedMessage: 'La factura quedó guardada en tus facturas.',
+    viewInvoices: 'Ver facturas',
+    confirmDisabled: 'Corregí los errores para poder confirmarla.',
     status: { ready: 'Lista', review: 'Para revisar', errors: 'Con errores' },
     summary: (errors, warnings) =>
       errors === 0 && warnings === 0
@@ -144,6 +213,60 @@ const es: Messages = {
     edited: 'Editado',
     noIva: 'Sin IVA discriminado',
     page: (n) => `Página ${n}`,
+  },
+  invoices: {
+    title: 'Facturas',
+    subtitle:
+      'Las facturas cargadas en la demo: un historial ficticio de seis meses más las que confirmes desde los ejemplos.',
+    count: (shown, total) => `${shown} de ${total} facturas`,
+    selected: (n) => `${n} seleccionadas`,
+    exportExcel: 'Exportar Excel',
+    exportCsv: 'Exportar CSV',
+    exportHint: 'Se exportan las seleccionadas o, si no hay, todas las del filtro.',
+    reset: 'Reiniciar demo',
+    resetConfirm: '¿Borrar las facturas que confirmaste en la demo?',
+    filters: {
+      status: 'Estado',
+      supplier: 'Proveedor',
+      month: 'Mes',
+      all: 'Todos',
+      allSuppliers: 'Todos los proveedores',
+      allMonths: 'Todos los meses',
+    },
+    statuses: { ready: 'Lista', review: 'Para revisar', error: 'Con errores' },
+    columns: {
+      date: 'Fecha',
+      voucher: 'Comprobante',
+      supplier: 'Proveedor',
+      cuit: 'CUIT',
+      net: 'Neto',
+      iva: 'IVA',
+      otherTaxes: 'Otros tributos',
+      total: 'Total',
+      cae: 'CAE',
+      status: 'Estado',
+    },
+    demoBadge: 'Demo',
+    empty: 'No hay facturas con estos filtros.',
+    selectAll: 'Seleccionar todas',
+  },
+  dashboard: {
+    title: 'Dashboard',
+    subtitle: 'Gastos del restaurante a partir de las facturas cargadas.',
+    totalSpend: 'Gasto total',
+    ivaCredit: 'IVA crédito fiscal',
+    ivaCreditHint: 'De facturas A sin errores',
+    invoiceCount: 'Facturas',
+    pending: 'Pendientes de revisar',
+    pendingLink: 'Ver pendientes',
+    byMonth: 'Gasto por mes',
+    byMonthHint: 'Total facturado por mes, con IVA y otros tributos.',
+    topSuppliers: 'Principales proveedores',
+    topSuppliersHint: 'Total facturado en el período.',
+    showData: 'Ver datos',
+    month: 'Mes',
+    supplier: 'Proveedor',
+    amount: 'Importe',
   },
   fields: {
     voucherType: 'Tipo',
@@ -186,7 +309,13 @@ const es: Messages = {
 
 const en: Messages = {
   locale: 'en-US',
-  nav: { samples: 'Samples', howItWorks: 'How it works', github: 'GitHub' },
+  nav: {
+    samples: 'Samples',
+    invoices: 'Invoices',
+    dashboard: 'Dashboard',
+    howItWorks: 'How it works',
+    github: 'GitHub',
+  },
   landing: {
     eyebrow: 'Intelligent document processing',
     title: 'From invoices',
@@ -232,6 +361,11 @@ const en: Messages = {
     invoice: 'Invoice',
     back: 'Samples',
     next: 'Next sample',
+    confirm: 'Confirm',
+    saved: 'Confirmed',
+    savedMessage: 'The invoice was saved to your invoices.',
+    viewInvoices: 'View invoices',
+    confirmDisabled: 'Fix the errors to confirm it.',
     status: { ready: 'Ready', review: 'Needs review', errors: 'Has errors' },
     summary: (errors, warnings) =>
       errors === 0 && warnings === 0
@@ -259,6 +393,60 @@ const en: Messages = {
     edited: 'Edited',
     noIva: 'No IVA breakdown',
     page: (n) => `Page ${n}`,
+  },
+  invoices: {
+    title: 'Invoices',
+    subtitle:
+      'Invoices loaded in the demo: six months of fictitious history plus the samples you confirm.',
+    count: (shown, total) => `${shown} of ${total} invoices`,
+    selected: (n) => `${n} selected`,
+    exportExcel: 'Export Excel',
+    exportCsv: 'Export CSV',
+    exportHint: 'Exports the selected invoices or, if none, everything in the filter.',
+    reset: 'Reset demo',
+    resetConfirm: 'Delete the invoices you confirmed in the demo?',
+    filters: {
+      status: 'Status',
+      supplier: 'Supplier',
+      month: 'Month',
+      all: 'All',
+      allSuppliers: 'All suppliers',
+      allMonths: 'All months',
+    },
+    statuses: { ready: 'Ready', review: 'Needs review', error: 'Has errors' },
+    columns: {
+      date: 'Date',
+      voucher: 'Voucher',
+      supplier: 'Supplier',
+      cuit: 'CUIT',
+      net: 'Net',
+      iva: 'IVA',
+      otherTaxes: 'Other taxes',
+      total: 'Total',
+      cae: 'CAE',
+      status: 'Status',
+    },
+    demoBadge: 'Demo',
+    empty: 'No invoices match these filters.',
+    selectAll: 'Select all',
+  },
+  dashboard: {
+    title: 'Dashboard',
+    subtitle: "The restaurant's spending, built from the loaded invoices.",
+    totalSpend: 'Total spend',
+    ivaCredit: 'IVA tax credit',
+    ivaCreditHint: 'From A invoices without errors',
+    invoiceCount: 'Invoices',
+    pending: 'Pending review',
+    pendingLink: 'See pending',
+    byMonth: 'Spend by month',
+    byMonthHint: 'Total invoiced per month, including IVA and other taxes.',
+    topSuppliers: 'Top suppliers',
+    topSuppliersHint: 'Total invoiced in the period.',
+    showData: 'Show data',
+    month: 'Month',
+    supplier: 'Supplier',
+    amount: 'Amount',
   },
   fields: {
     voucherType: 'Type',

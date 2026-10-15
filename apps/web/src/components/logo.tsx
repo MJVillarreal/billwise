@@ -17,11 +17,17 @@ export function LogoIcon({ className = 'size-8' }: { className?: string }) {
   );
 }
 
-export function Logo({ inverted = false }: { inverted?: boolean }) {
+export function Logo({
+  inverted = false,
+  compact = false,
+}: {
+  inverted?: boolean;
+  compact?: boolean;
+}) {
   return (
     <span className="flex items-center gap-2">
       <LogoIcon className="size-8" />
-      <span className="text-xl font-bold tracking-tight">
+      <span className={`text-xl font-bold tracking-tight ${compact ? 'hidden sm:inline' : ''}`}>
         <span className={inverted ? 'text-white' : 'text-navy'}>Bill</span>
         <span className="text-brand">wise</span>
       </span>

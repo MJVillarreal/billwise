@@ -16,6 +16,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Braces,
+  Check,
   CheckCircle2,
   CircleAlert,
   XCircle,
@@ -24,6 +25,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '@/i18n/language-provider';
 import { FORM_FIELDS, type FormValues, fromForm, ivaKey, toForm } from '@/lib/invoice-form';
+import { saveInvoice } from '@/lib/invoice-store';
 import { configurePdfjs } from '@/lib/pdf';
 import type { Sample } from '@/lib/samples';
 import { type Highlight, PdfViewer } from './pdf-viewer';
@@ -50,6 +52,7 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
   const [editedKeys, setEditedKeys] = useState<string[]>([]);
   const [activeField, setActiveField] = useState<InvoiceField | null>(null);
   const [showJson, setShowJson] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [today, setToday] = useState('');
 
   useEffect(() => {
@@ -141,7 +144,19 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
     status: statusOf(field as InvoiceField),
   }));
 
+  const confirm = () => {
+    saveInvoice({
+      id: `demo-${sample.id}`,
+      data: live.data,
+      origin: 'demo',
+      sampleId: sample.id,
+      confirmed: true,
+    });
+    setSaved(true);
+  };
+
   const update = (key: string, value: string) => {
+    setSaved(false);
     setValues((current) => ({ ...current, [key]: value }));
     setEditedKeys((current) => (current.includes(key) ? current : [...current, key]));
   };
@@ -200,16 +215,41 @@ export function InvoiceReview({ sample, existingKeys, nextId }: InvoiceReviewPro
           {nextId && (
             <Link
               href={`/demo/${nextId}`}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-dark"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50"
             >
               {t.review.next}
               <ArrowRight className="size-4" />
             </Link>
           )}
+          <button
+            type="button"
+            onClick={confirm}
+            disabled={errors > 0 || saved}
+            title={errors > 0 ? t.review.confirmDisabled : undefined}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <Check className="size-4" />
+            {saved ? t.review.saved : t.review.confirm}
+          </button>
         </div>
       </div>
 
-      <p className="mt-3 text-sm text-muted">{t.review.summary(errors, warnings)}</p>
+      <p className="mt-3 text-sm text-muted">
+        {t.review.summary(errors, warnings)}
+        {errors > 0 && ` ${t.review.confirmDisabled}`}
+      </p>
+
+      {saved && (
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="size-4 shrink-0" />
+            {t.review.savedMessage}
+          </span>
+          <Link href="/demo/invoices" className="font-semibold underline-offset-2 hover:underline">
+            {t.review.viewInvoices}
+          </Link>
+        </div>
+      )}
 
       {invoiceIssues.map((issue) => (
         <div
