@@ -2,6 +2,7 @@
   {
     "id": "invoice-a-valid",
     "file": "invoice-a-valid.pdf",
+    "thumbnail": "invoice-a-valid.webp",
     "scenario": {
       "es": "Factura A correcta: todo en verde, lista sin revisión.",
       "en": "Valid A invoice: every field checks out."
@@ -60,6 +61,7 @@
   {
     "id": "invoice-b-final-consumer",
     "file": "invoice-b-final-consumer.pdf",
+    "thumbnail": "invoice-b-final-consumer.webp",
     "scenario": {
       "es": "Factura B a consumidor final, con el IVA contenido informado.",
       "en": "B invoice to a final consumer, showing the IVA included in the price."
@@ -109,6 +111,7 @@
   {
     "id": "invoice-c-monotributo",
     "file": "invoice-c-monotributo.pdf",
+    "thumbnail": "invoice-c-monotributo.webp",
     "scenario": {
       "es": "Factura C de monotributista: no discrimina IVA.",
       "en": "C invoice from a small taxpayer (monotributo): no IVA breakdown."
@@ -158,6 +161,7 @@
   {
     "id": "invoice-total-mismatch",
     "file": "invoice-total-mismatch.pdf",
+    "thumbnail": "invoice-total-mismatch.webp",
     "scenario": {
       "es": "El total impreso no cierra: neto + IVA ≠ total.",
       "en": "The printed total does not add up: net + IVA ≠ total."
@@ -214,6 +218,7 @@
   {
     "id": "invoice-invalid-cuit",
     "file": "invoice-invalid-cuit.pdf",
+    "thumbnail": "invoice-invalid-cuit.webp",
     "scenario": {
       "es": "El CUIT del emisor tiene mal el dígito verificador.",
       "en": "The issuer's CUIT has a wrong check digit."
@@ -270,6 +275,7 @@
   {
     "id": "invoice-qr-mismatch",
     "file": "invoice-qr-mismatch.pdf",
+    "thumbnail": "invoice-qr-mismatch.webp",
     "scenario": {
       "es": "El QR dice otro número de comprobante que el impreso: gana el QR y el campo queda dudoso.",
       "en": "The QR has a different voucher number than the printed one: the QR wins and the field is flagged."
@@ -326,6 +332,7 @@
   {
     "id": "invoice-a-duplicate",
     "file": "invoice-a-duplicate.pdf",
+    "thumbnail": "invoice-a-duplicate.webp",
     "scenario": {
       "es": "La misma factura A subida de nuevo (copia DUPLICADO): se detecta como repetida.",
       "en": "The same A invoice uploaded again (DUPLICADO copy): detected as a duplicate."

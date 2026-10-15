@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@billwise/shared": "*",
+    "@napi-rs/canvas": "^1.0.11",
     "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {

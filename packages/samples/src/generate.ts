@@ -4,6 +4,7 @@ import { encodeArcaQr } from '@billwise/shared';
 import { sampleInvoices } from './invoices.js';
 import { printedInvoice, qrPayload } from './manifest.js';
 import { renderInvoice } from './render.js';
+import { renderThumbnail } from './thumbnail.js';
 import { computeTotals } from './totals.js';
 
 const OUT_DIR = resolve(import.meta.dirname, '../../../apps/web/public/samples');
@@ -18,10 +19,14 @@ async function main() {
     const qr = qrPayload(invoice, totals);
     const file = `${invoice.id}.pdf`;
 
-    await writeFile(resolve(OUT_DIR, file), await renderInvoice(invoice, totals, encodeArcaQr(qr)));
+    const thumbnail = `${invoice.id}.webp`;
+    const pdf = await renderInvoice(invoice, totals, encodeArcaQr(qr));
+    await writeFile(resolve(OUT_DIR, file), pdf);
+    await writeFile(resolve(OUT_DIR, thumbnail), await renderThumbnail(pdf.slice()));
     manifest.push({
       id: invoice.id,
       file,
+      thumbnail,
       scenario: invoice.scenario,
       expectedIssues: invoice.expectedIssues,
       letter: invoice.letter,
