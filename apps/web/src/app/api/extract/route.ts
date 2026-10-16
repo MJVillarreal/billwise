@@ -3,6 +3,9 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { DAILY_AI_LIMIT, QUOTA_COOKIE, quotaCookie, usedToday } from '@/lib/server/ai-quota';
 import { extractWithGemini } from '@/lib/server/gemini';
 
+// Gemini can take a while, and a second model is tried if the first one fails.
+export const maxDuration = 60;
+
 const MAX_IMAGES = 3;
 const MAX_IMAGE_BYTES = 2.5 * 1024 * 1024;
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];

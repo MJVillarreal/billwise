@@ -17,16 +17,18 @@ export function quotaDay(now = new Date()): string {
   return now.toLocaleDateString('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' });
 }
 
-/** How many AI readings this visitor used today, from a signed cookie. A tampered cookie counts as the limit. */
+/**
+ * How many AI readings this visitor used today, from a signed cookie. An invalid cookie counts as
+ * zero: clearing cookies resets the count anyway, and this way rotating the secret blocks nobody.
+ */
 export function usedToday(cookie: string | undefined, day = quotaDay()): number {
   if (!cookie) return 0;
   const [payload, signature] = cookie.split('.');
-  if (!payload || !signature) return DAILY_AI_LIMIT;
+  if (!payload || !signature) return 0;
 
   const expected = Buffer.from(sign(payload));
   const actual = Buffer.from(signature);
-  if (expected.length !== actual.length || !timingSafeEqual(expected, actual))
-    return DAILY_AI_LIMIT;
+  if (expected.length !== actual.length || !timingSafeEqual(expected, actual)) return 0;
 
   const [cookieDay, count] = Buffer.from(payload, 'base64url').toString().split('|');
   return cookieDay === day ? Math.min(Number(count) || 0, DAILY_AI_LIMIT) : 0;

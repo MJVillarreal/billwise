@@ -1,7 +1,7 @@
 import { EXTRACTION_PROMPT, EXTRACTION_SCHEMA } from './ai-extraction.js';
 
 export const DEFAULT_GEMINI_MODELS = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
-const TIMEOUT_MS = 40_000;
+const TIMEOUT_MS = 25_000;
 
 export interface InlineImage {
   mimeType: string;
