@@ -2,6 +2,7 @@ export * from './ai-extraction.js';
 export * from './amount.js';
 export * from './arca-qr.js';
 export * from './cuit.js';
+export * from './gemini.js';
 export * from './invoice.js';
 export * from './process.js';
 export * from './qr-reconcile.js';
