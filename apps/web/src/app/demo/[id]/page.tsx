@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { InvoiceReview } from '@/components/invoice-review';
+import { StoredAiReview } from '@/components/stored-ai-review';
 import { findSample, keysLoadedBefore, samples } from '@/lib/samples';
 
 export function generateStaticParams() {
@@ -22,6 +23,17 @@ async function Sample({ params }: { params: PageProps<'/demo/[id]'>['params'] })
 
   const index = samples.indexOf(sample);
   const nextId = samples[index + 1]?.id ?? null;
+
+  if (sample.photo && sample.ai) {
+    return (
+      <StoredAiReview
+        key={sample.id}
+        sample={{ ...sample, photo: sample.photo, ai: sample.ai }}
+        existingKeys={keysLoadedBefore(id)}
+        nextId={nextId}
+      />
+    );
+  }
 
   return (
     <InvoiceReview

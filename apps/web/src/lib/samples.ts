@@ -16,6 +16,8 @@ export interface Sample {
   expectedIssues: string[];
   printed: InvoiceData;
   qr: ArcaQrData;
+  photo?: string;
+  ai?: { model: string; date: string; answer: unknown };
 }
 
 export const samples = manifest as unknown as Sample[];

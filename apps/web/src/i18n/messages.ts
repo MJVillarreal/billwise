@@ -156,6 +156,9 @@ export interface Messages {
     >;
     notice: string;
     source: string;
+    storedStage: string;
+    storedNotice: (model: string, date: string) => string;
+    badge: string;
   };
   demoCompany: { label: string; fictitious: string };
   footer: string;
@@ -427,6 +430,10 @@ const es: Messages = {
     notice:
       'Estos datos los leyó la IA (Gemini) y, si la imagen tiene el QR de ARCA, se cruzaron con él. Revisalos contra la imagen antes de confirmar.',
     source: 'IA',
+    storedStage: 'Usando la lectura de Gemini guardada',
+    storedNotice: (model, date) =>
+      `Foto de ejemplo: la leyó Gemini (${model}) el ${date.split('-').reverse().join('/')} y el resultado quedó guardado, así la demo no gasta cuota. El QR se busca en la foto en este momento, en tu navegador.`,
+    badge: 'IA',
   },
   demoCompany: { label: 'Empresa de la demo', fictitious: 'ficticia' },
   footer:
@@ -691,6 +698,10 @@ const en: Messages = {
     notice:
       'These fields were read by AI (Gemini) and, if the image has the ARCA QR code, checked against it. Check them against the image before confirming.',
     source: 'AI',
+    storedStage: 'Using the stored Gemini reading',
+    storedNotice: (model, date) =>
+      `Sample photo: read by Gemini (${model}) on ${date} and stored, so the demo does not use quota. The QR is searched in the photo right now, in your browser.`,
+    badge: 'AI',
   },
   demoCompany: { label: 'Demo company', fictitious: 'fictitious' },
   footer: 'Portfolio project. Demo invoices are fictitious and have no tax validity.',

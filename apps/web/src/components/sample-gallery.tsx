@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, FileUp, Info } from 'lucide-react';
+import { ArrowRight, FileUp, Info, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/language-provider';
@@ -48,6 +48,12 @@ export function SampleGallery({ samples }: { samples: Sample[] }) {
                   <span className="absolute left-3 top-3 flex size-8 items-center justify-center rounded-md bg-navy text-sm font-bold text-white">
                     {sample.letter}
                   </span>
+                  {sample.photo && (
+                    <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-md bg-brand px-2 py-1 text-xs font-semibold text-white">
+                      <Sparkles className="size-3.5" />
+                      {t.ai.badge}
+                    </span>
+                  )}
                   <span className="absolute right-3 top-3 rounded-md bg-white/90 px-2 py-1 text-xs font-medium text-muted">
                     #{index + 1}
                   </span>
