@@ -16,8 +16,19 @@ export function SampleGallery({ samples }: { samples: Sample[] }) {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
           {t.gallery.eyebrow}
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight">{t.gallery.title}</h1>
-        <p className="mt-3 max-w-2xl text-muted">{t.gallery.subtitle}</p>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight">{t.gallery.title}</h1>
+            <p className="mt-3 max-w-2xl text-muted">{t.gallery.subtitle}</p>
+          </div>
+          <Link
+            href="/demo/upload"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold hover:border-brand/50 hover:text-brand"
+          >
+            <FileUp className="size-4" />
+            {t.upload.galleryCta.action}
+          </Link>
+        </div>
 
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {samples.map((sample, index) => (

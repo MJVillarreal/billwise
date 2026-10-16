@@ -15,6 +15,8 @@ export interface Messages {
     trySamples: string;
     howItWorks: string;
     privacy: string;
+    uploadPrompt: string;
+    uploadLink: string;
     stepsTitle: string;
     steps: { title: string; text: string }[];
   };
@@ -158,6 +160,8 @@ const es: Messages = {
     trySamples: 'Probar con facturas de ejemplo',
     howItWorks: 'Cómo funciona',
     privacy: 'Los ejemplos son ficticios y se procesan en tu navegador.',
+    uploadPrompt: '¿Tenés una factura en PDF?',
+    uploadLink: 'Subila',
     stepsTitle: 'Cómo funciona',
     steps: [
       {
@@ -381,6 +385,8 @@ const en: Messages = {
     trySamples: 'Try sample invoices',
     howItWorks: 'How it works',
     privacy: 'Samples are fictitious and processed in your browser.',
+    uploadPrompt: 'Have an invoice PDF?',
+    uploadLink: 'Upload it',
     stepsTitle: 'How it works',
     steps: [
       { title: 'Upload', text: 'A PDF invoice, as downloaded from ARCA or your supplier.' },

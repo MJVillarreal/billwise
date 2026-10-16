@@ -38,6 +38,16 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-4 text-sm text-ice/60">{t.landing.privacy}</p>
+            <p className="mt-2 text-sm text-ice/80">
+              {t.landing.uploadPrompt}{' '}
+              <Link
+                href="/demo/upload"
+                className="inline-flex items-center gap-1 font-semibold text-white underline decoration-brand decoration-2 underline-offset-4 hover:text-ice"
+              >
+                {t.landing.uploadLink}
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </p>
           </div>
 
           <div className="relative mx-auto w-full max-w-md">
