@@ -138,6 +138,25 @@ export interface Messages {
     galleryCta: { title: string; text: string; action: string };
     qrOnly: string;
   };
+  ai: {
+    readWithAi: string;
+    consentTitle: string;
+    consentText: string;
+    privacy: string;
+    remaining: (n: number) => string;
+    noneLeft: string;
+    disabled: string;
+    start: string;
+    cancel: string;
+    stages: { prepare: string; qr: string; send: string; validate: string };
+    processingTitle: string;
+    errors: Record<
+      'daily_limit' | 'quota_exhausted' | 'ai_unavailable' | 'failed' | 'not_invoice',
+      { title: string; text: string }
+    >;
+    notice: string;
+    source: string;
+  };
   demoCompany: { label: string; fictitious: string };
   footer: string;
 }
@@ -156,7 +175,7 @@ const es: Messages = {
     title: 'De la factura al dato,',
     titleAccent: 'en segundos.',
     subtitle:
-      'Billwise lee facturas electrónicas argentinas, toma los datos del QR de ARCA y del texto, controla cada uno con las reglas fiscales y te marca qué revisar.',
+      'Billwise lee facturas electrónicas argentinas: toma los datos del QR de ARCA y del texto, usa IA para las fotos y los escaneos, controla cada dato con las reglas fiscales y te marca qué revisar.',
     trySamples: 'Probar con facturas de ejemplo',
     howItWorks: 'Cómo funciona',
     privacy: 'Los ejemplos son ficticios y se procesan en tu navegador.',
@@ -166,11 +185,11 @@ const es: Messages = {
     steps: [
       {
         title: 'Subís la factura',
-        text: 'En PDF, tal como la descargás de ARCA o de tu proveedor.',
+        text: 'En PDF, tal como la descargás de ARCA, o una foto.',
       },
       {
-        title: 'Lee el QR y el texto',
-        text: 'El QR es el dato autorizado; el texto completa el resto.',
+        title: 'Lee el QR, el texto o con IA',
+        text: 'El QR es el dato autorizado. El texto del PDF, o Gemini en fotos y escaneos, completa el resto.',
       },
       { title: 'Valida cada dato', text: 'CUIT, totales, IVA por alícuota, fechas y duplicados.' },
       {
@@ -331,12 +350,13 @@ const es: Messages = {
     title: 'Probá con una factura tuya',
     subtitle:
       'Subí una factura electrónica en PDF, tal como la descargás de ARCA o te la manda tu proveedor.',
-    drop: 'Arrastrá el PDF acá',
+    drop: 'Arrastrá el PDF o la foto acá',
     choose: 'Elegir archivo',
     privacy: 'Tu archivo no sale de tu dispositivo: se lee en este navegador.',
-    limits: 'Solo PDF, hasta 10 MB.',
-    photosLater: 'Las fotos y los escaneos se van a poder leer con IA más adelante.',
-    notPdf: 'Ese archivo no es un PDF.',
+    limits: 'PDF, JPG, PNG o WebP, hasta 10 MB.',
+    photosLater:
+      'Las fotos y los escaneos se leen con IA (Gemini), con tu permiso y hasta 2 por día.',
+    notPdf: 'Ese tipo de archivo no se puede leer. Subí un PDF o una foto en JPG, PNG o WebP.',
     tooLarge: 'El archivo pesa más de 10 MB.',
     another: 'Subir otra',
     trySamples: 'Ver los ejemplos',
@@ -347,7 +367,7 @@ const es: Messages = {
     unreadable: {
       scanned: {
         title: 'Parece un escaneo o una foto',
-        text: 'El PDF no tiene texto ni un QR que se pueda leer. Este tipo de archivo se va a procesar con IA.',
+        text: 'El PDF no tiene texto ni un QR que se pueda leer. Lo podés leer con IA.',
       },
       unknown: {
         title: 'No reconocimos el formato',
@@ -355,12 +375,58 @@ const es: Messages = {
       },
     },
     qrOnly:
-      'El PDF es una imagen, sin texto: los datos salen del QR de ARCA. La razón social y el detalle de IVA se van a poder leer con IA.',
+      'El PDF es una imagen, sin texto: los datos salen del QR de ARCA. Para la razón social y el detalle de IVA, leelo con IA.',
     galleryCta: {
       title: '¿Tenés una factura en PDF?',
       text: 'Probá Billwise con una factura tuya. Se lee en tu navegador y no sale de tu dispositivo.',
       action: 'Subir factura',
     },
+  },
+  ai: {
+    readWithAi: 'Leer con IA',
+    consentTitle: 'Leer la factura con IA',
+    consentText:
+      'Las fotos y los escaneos no tienen texto que se pueda leer directo. Billwise los envía a Gemini, la IA de Google, que devuelve los datos de la factura. Después se validan con las mismas reglas y, si tiene QR, se cruzan con el QR de ARCA.',
+    privacy:
+      'El archivo sale de tu dispositivo y va a Google. En el plan gratis Google puede usar el contenido para mejorar sus productos: no subas comprobantes con datos que no quieras compartir.',
+    remaining: (n) =>
+      n === 1 ? 'Te queda 1 lectura con IA hoy.' : `Te quedan ${n} lecturas con IA hoy.`,
+    noneLeft: 'Ya usaste las 2 lecturas con IA de hoy. Mañana se renuevan.',
+    disabled: 'La lectura con IA no está disponible en este momento.',
+    start: 'Leer con IA',
+    cancel: 'Cancelar',
+    stages: {
+      prepare: 'Preparando la imagen',
+      qr: 'Buscando el QR de ARCA',
+      send: 'Leyendo con Gemini',
+      validate: 'Validando',
+    },
+    processingTitle: 'Leyendo con IA',
+    errors: {
+      daily_limit: {
+        title: 'Ya usaste las lecturas con IA de hoy',
+        text: 'Cada visitante tiene 2 por día. Mientras tanto, probá con las facturas de ejemplo.',
+      },
+      quota_exhausted: {
+        title: 'Hoy se hicieron muchas consultas con IA',
+        text: 'La demo usa el plan gratis de Gemini y se alcanzó el límite del día. Probá con las facturas de ejemplo.',
+      },
+      ai_unavailable: {
+        title: 'La IA no está disponible ahora',
+        text: 'Gemini no respondió. Puede ser un pico de uso: probá de nuevo en un rato o mirá los ejemplos.',
+      },
+      failed: {
+        title: 'No se pudo preparar el archivo',
+        text: 'Probá con otra foto, en JPG o PNG.',
+      },
+      not_invoice: {
+        title: 'La IA no encontró una factura',
+        text: 'No aparecen los datos de una factura electrónica en el archivo.',
+      },
+    },
+    notice:
+      'Estos datos los leyó la IA (Gemini) y, si la imagen tiene el QR de ARCA, se cruzaron con él. Revisalos contra la imagen antes de confirmar.',
+    source: 'IA',
   },
   demoCompany: { label: 'Empresa de la demo', fictitious: 'ficticia' },
   footer:
@@ -381,7 +447,7 @@ const en: Messages = {
     title: 'From invoices',
     titleAccent: 'to insights.',
     subtitle:
-      'Billwise reads Argentine electronic invoices, takes the data from the ARCA QR code and the printed text, checks every field against tax rules and flags what needs a second look.',
+      'Billwise reads Argentine electronic invoices: it takes the data from the ARCA QR code and the printed text, uses AI for photos and scans, checks every field against tax rules and flags what needs a second look.',
     trySamples: 'Try sample invoices',
     howItWorks: 'How it works',
     privacy: 'Samples are fictitious and processed in your browser.',
@@ -389,10 +455,10 @@ const en: Messages = {
     uploadLink: 'Upload it',
     stepsTitle: 'How it works',
     steps: [
-      { title: 'Upload', text: 'A PDF invoice, as downloaded from ARCA or your supplier.' },
+      { title: 'Upload', text: 'A PDF invoice, as downloaded from ARCA, or a photo.' },
       {
-        title: 'Read the QR and text',
-        text: 'The QR is the authorized record; the text fills in the rest.',
+        title: 'Read the QR, text or with AI',
+        text: 'The QR is the authorized record. The PDF text, or Gemini for photos and scans, fills in the rest.',
       },
       { title: 'Validate', text: 'CUIT, totals, IVA per rate, dates and duplicates.' },
       { title: 'Review', text: 'See where each value came from and fix what is off.' },
@@ -549,12 +615,13 @@ const en: Messages = {
     eyebrow: 'Your invoice',
     title: 'Try one of your invoices',
     subtitle: 'Upload an electronic invoice PDF, as downloaded from ARCA or sent by your supplier.',
-    drop: 'Drop the PDF here',
+    drop: 'Drop the PDF or photo here',
     choose: 'Choose file',
     privacy: 'Your file never leaves your device: it is read in this browser.',
-    limits: 'PDF only, up to 10 MB.',
-    photosLater: 'Photos and scans will be read with AI later on.',
-    notPdf: 'That file is not a PDF.',
+    limits: 'PDF, JPG, PNG or WebP, up to 10 MB.',
+    photosLater:
+      'Photos and scans are read with AI (Gemini), with your permission and up to 2 per day.',
+    notPdf: 'That file type cannot be read. Upload a PDF or a JPG, PNG or WebP photo.',
     tooLarge: 'The file is larger than 10 MB.',
     another: 'Upload another',
     trySamples: 'See the samples',
@@ -565,7 +632,7 @@ const en: Messages = {
     unreadable: {
       scanned: {
         title: 'This looks like a scan or a photo',
-        text: 'The PDF has no readable text or QR code. Files like this will be processed with AI.',
+        text: 'The PDF has no readable text or QR code. You can read it with AI.',
       },
       unknown: {
         title: 'Layout not recognized',
@@ -573,12 +640,57 @@ const en: Messages = {
       },
     },
     qrOnly:
-      'This PDF is an image with no text: the data comes from the ARCA QR code. The company name and IVA breakdown will be read with AI.',
+      'This PDF is an image with no text: the data comes from the ARCA QR code. Read it with AI for the company name and IVA breakdown.',
     galleryCta: {
       title: 'Have an invoice PDF?',
       text: 'Try Billwise with one of your own invoices. It is read in your browser and never leaves your device.',
       action: 'Upload invoice',
     },
+  },
+  ai: {
+    readWithAi: 'Read with AI',
+    consentTitle: 'Read the invoice with AI',
+    consentText:
+      "Photos and scans have no text that can be read directly. Billwise sends them to Gemini, Google's AI, which returns the invoice fields. They are then validated with the same rules and, if there is a QR code, checked against the ARCA QR.",
+    privacy:
+      'The file leaves your device and goes to Google. On the free plan Google may use the content to improve its products: do not upload invoices with data you do not want to share.',
+    remaining: (n) => (n === 1 ? '1 AI reading left today.' : `${n} AI readings left today.`),
+    noneLeft: 'You used your 2 AI readings for today. They renew tomorrow.',
+    disabled: 'AI reading is not available right now.',
+    start: 'Read with AI',
+    cancel: 'Cancel',
+    stages: {
+      prepare: 'Preparing the image',
+      qr: 'Looking for the ARCA QR',
+      send: 'Reading with Gemini',
+      validate: 'Validating',
+    },
+    processingTitle: 'Reading with AI',
+    errors: {
+      daily_limit: {
+        title: 'You used your AI readings for today',
+        text: 'Each visitor gets 2 per day. Meanwhile, try the sample invoices.',
+      },
+      quota_exhausted: {
+        title: 'Lots of AI requests today',
+        text: "The demo runs on the Gemini free plan and today's limit was reached. Try the sample invoices.",
+      },
+      ai_unavailable: {
+        title: 'AI is not available right now',
+        text: 'Gemini did not answer. It may be a usage spike: try again later or look at the samples.',
+      },
+      failed: {
+        title: 'The file could not be prepared',
+        text: 'Try another photo, as JPG or PNG.',
+      },
+      not_invoice: {
+        title: 'The AI found no invoice',
+        text: 'The file does not show the fields of an electronic invoice.',
+      },
+    },
+    notice:
+      'These fields were read by AI (Gemini) and, if the image has the ARCA QR code, checked against it. Check them against the image before confirming.',
+    source: 'AI',
   },
   demoCompany: { label: 'Demo company', fictitious: 'fictitious' },
   footer: 'Portfolio project. Demo invoices are fictitious and have no tax validity.',

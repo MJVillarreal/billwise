@@ -1,25 +1,26 @@
 'use client';
 
 import { Check, Loader2 } from 'lucide-react';
-import { useLanguage } from '@/i18n/language-provider';
 
-export const STAGES = ['download', 'text', 'qr', 'extract', 'validate'] as const;
-export type Stage = (typeof STAGES)[number];
+interface ProcessingStepsProps {
+  title: string;
+  fileName: string;
+  labels: string[];
+  current: number;
+}
 
-export function ProcessingSteps({ current, fileName }: { current: number; fileName: string }) {
-  const { t } = useLanguage();
-
+export function ProcessingSteps({ title, fileName, labels, current }: ProcessingStepsProps) {
   return (
     <div className="mx-auto w-full max-w-md px-4 py-16">
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-lg font-semibold">{t.processing.title}</h1>
+        <h1 className="text-lg font-semibold">{title}</h1>
         <p className="mt-1 truncate text-sm text-muted">{fileName}</p>
         <ol className="mt-6 space-y-3">
-          {STAGES.map((stage, index) => {
+          {labels.map((label, index) => {
             const done = index < current;
             const active = index === current;
             return (
-              <li key={stage} className="flex items-center gap-3 text-sm">
+              <li key={label} className="flex items-center gap-3 text-sm">
                 <span
                   className={`flex size-6 items-center justify-center rounded-full transition ${
                     done
@@ -38,7 +39,7 @@ export function ProcessingSteps({ current, fileName }: { current: number; fileNa
                   )}
                 </span>
                 <span className={done || active ? 'font-medium text-navy' : 'text-slate-400'}>
-                  {t.processing.stages[stage]}
+                  {label}
                 </span>
               </li>
             );
@@ -47,10 +48,25 @@ export function ProcessingSteps({ current, fileName }: { current: number; fileNa
         <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-slate-100">
           <div
             className="h-full rounded-full bg-brand transition-all duration-500"
-            style={{ width: `${(Math.min(current, STAGES.length) / STAGES.length) * 100}%` }}
+            style={{ width: `${(Math.min(current, labels.length) / labels.length) * 100}%` }}
           />
         </div>
       </div>
     </div>
   );
+}
+
+/** Keeps each stage on screen long enough to be read, since the real work is often instant. */
+export function stageTimer(onStage: (index: number) => void, minMs = 450) {
+  let startedAt = Date.now();
+  const show = (index: number) => {
+    onStage(index);
+    startedAt = Date.now();
+  };
+  const advance = async (index: number) => {
+    const remaining = Math.max(minMs - (Date.now() - startedAt), 0);
+    await new Promise((resolve) => setTimeout(resolve, remaining));
+    show(index);
+  };
+  return { show, advance };
 }

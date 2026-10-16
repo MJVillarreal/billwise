@@ -1,19 +1,23 @@
 'use client';
 
 import { voucherKey } from '@billwise/shared';
-import { FileUp, ImageOff, ShieldCheck } from 'lucide-react';
+import { FileUp, ShieldCheck, Sparkles } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useLanguage } from '@/i18n/language-provider';
 import { useInvoices } from '@/lib/invoice-store';
+import { AiReview, type AiSource } from './ai-review';
 import { InvoiceReview, type ReviewSource } from './invoice-review';
 
 const MAX_BYTES = 10 * 1024 * 1024;
+const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+type Selected = { mode: 'pdf'; source: ReviewSource } | { mode: 'ai'; source: AiSource };
 
 export function UploadFlow() {
   const { t } = useLanguage();
   const invoices = useInvoices();
   const inputRef = useRef<HTMLInputElement>(null);
-  const [source, setSource] = useState<ReviewSource | null>(null);
+  const [selected, setSelected] = useState<Selected | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
 
@@ -30,21 +34,39 @@ export function UploadFlow() {
   const accept = async (file: File | undefined) => {
     if (!file) return;
     const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-    if (!isPdf) return setError(t.upload.notPdf);
+    const isImage = IMAGE_TYPES.includes(file.type);
+    if (!isPdf && !isImage) return setError(t.upload.notPdf);
     if (file.size > MAX_BYTES) return setError(t.upload.tooLarge);
 
     setError(null);
     setExistingKeys(currentKeys);
-    setSource({ kind: 'upload', name: file.name, data: new Uint8Array(await file.arrayBuffer()) });
+    if (isImage) {
+      setSelected({ mode: 'ai', source: { kind: 'image', file } });
+    } else {
+      const data = new Uint8Array(await file.arrayBuffer());
+      setSelected({ mode: 'pdf', source: { kind: 'upload', name: file.name, data } });
+    }
   };
 
   const restart = () => {
-    setSource(null);
+    setSelected(null);
     if (inputRef.current) inputRef.current.value = '';
   };
 
-  if (source) {
-    return <InvoiceReview source={source} existingKeys={existingKeys} onRestart={restart} />;
+  if (selected?.mode === 'ai') {
+    return <AiReview source={selected.source} existingKeys={existingKeys} onRestart={restart} />;
+  }
+
+  if (selected?.mode === 'pdf') {
+    const name = selected.source.kind === 'upload' ? selected.source.name : '';
+    return (
+      <InvoiceReview
+        source={selected.source}
+        existingKeys={existingKeys}
+        onRestart={restart}
+        onUseAi={(data) => setSelected({ mode: 'ai', source: { kind: 'pdf', name, data } })}
+      />
+    );
   }
 
   return (
@@ -82,7 +104,7 @@ export function UploadFlow() {
           <input
             ref={inputRef}
             type="file"
-            accept="application/pdf,.pdf"
+            accept="application/pdf,.pdf,image/jpeg,image/png,image/webp"
             className="sr-only"
             onChange={(event) => void accept(event.target.files?.[0])}
           />
@@ -103,7 +125,7 @@ export function UploadFlow() {
             {t.upload.privacy}
           </li>
           <li className="flex items-start gap-2">
-            <ImageOff className="mt-0.5 size-4 shrink-0" />
+            <Sparkles className="mt-0.5 size-4 shrink-0 text-brand" />
             {t.upload.photosLater}
           </li>
         </ul>
