@@ -21,6 +21,15 @@ interface CanvasFactory {
 
 const QR_RENDER_SCALES = [3, 4];
 
+/** Looks for a QR code in raw RGBA pixels, e.g. a photo drawn on a canvas. */
+export function findQrInPixels(
+  pixels: Uint8ClampedArray,
+  width: number,
+  height: number,
+): string | null {
+  return jsQR(pixels, width, height)?.data ?? null;
+}
+
 export interface ReadPdfOptions {
   /** Where pdf.js finds its standard fonts, needed to render pages. */
   standardFontDataUrl?: string;
@@ -108,9 +117,9 @@ async function findQr(doc: PDFDocumentProxy, pageCount: number): Promise<string 
       await page.render({ canvas, canvasContext: context, viewport }).promise;
 
       const image = context.getImageData(0, 0, viewport.width, viewport.height);
-      const result = jsQR(image.data, image.width, image.height);
+      const found = findQrInPixels(image.data, image.width, image.height);
       canvasFactory.destroy({ canvas, context });
-      if (result) return result.data;
+      if (found) return found;
     }
   }
   return null;
