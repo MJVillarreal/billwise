@@ -1,3 +1,4 @@
+export * from './ai-extraction.js';
 export * from './amount.js';
 export * from './arca-qr.js';
 export * from './cuit.js';

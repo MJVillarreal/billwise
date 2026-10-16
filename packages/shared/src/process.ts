@@ -25,13 +25,34 @@ export interface ProcessResult {
 
 export function processInvoice(input: ProcessInput, options: ValidationOptions): ProcessResult {
   const parsed = parseInvoiceText(input.items);
-  const qr = input.qrText ? decodeArcaQr(input.qrText) : null;
-  const reconciled = qr
-    ? reconcileWithQr(parsed.data, qr)
-    : { data: parsed.data, issues: [], fromQr: [] };
-  const validation = validateInvoice(reconciled.data, options);
+  return finish(parsed.data, input.qrText, options, {
+    locations: parsed.locations,
+    recognized: parsed.recognized >= MIN_RECOGNIZED_FIELDS,
+  });
+}
 
-  const issues = [...reconciled.issues, ...validation.issues];
+/** Same checks for data that was already extracted by another reader, such as the AI. */
+export function processExtractedInvoice(
+  data: InvoiceData,
+  qrText: string | null,
+  options: ValidationOptions,
+): ProcessResult {
+  const required = [data.voucherType, data.number, data.issuer.cuit, data.total, data.cae];
+  return finish(data, qrText, options, {
+    locations: {},
+    recognized: required.filter((value) => value !== null).length >= 3,
+  });
+}
+
+function finish(
+  data: InvoiceData,
+  qrText: string | null,
+  options: ValidationOptions,
+  extracted: { locations: ProcessResult['locations']; recognized: boolean },
+): ProcessResult {
+  const qr = qrText ? decodeArcaQr(qrText) : null;
+  const reconciled = qr ? reconcileWithQr(data, qr) : { data, issues: [], fromQr: [] };
+  const issues = [...reconciled.issues, ...validateInvoice(reconciled.data, options).issues];
 
   return {
     data: reconciled.data,
@@ -39,7 +60,7 @@ export function processInvoice(input: ProcessInput, options: ValidationOptions):
     issues,
     fields: worstSeverityByField(issues),
     fromQr: reconciled.fromQr,
-    locations: parsed.locations,
-    recognized: qr !== null || parsed.recognized >= MIN_RECOGNIZED_FIELDS,
+    locations: extracted.locations,
+    recognized: qr !== null || extracted.recognized,
   };
 }
