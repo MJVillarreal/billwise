@@ -190,7 +190,7 @@ export function ReviewScreen(props: ReviewScreenProps) {
 
       <p className="mt-3 text-sm text-muted">
         {t.review.summary(errors, warnings)}
-        {errors > 0 && ` ${t.review.confirmDisabled}`}
+        {errors > 0 && `. ${t.review.confirmDisabled}`}
       </p>
 
       {notice && (
