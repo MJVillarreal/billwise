@@ -266,6 +266,42 @@ export const sampleInvoices: SampleInvoice[] = [
     printed: { number: 827 },
   },
   {
+    id: 'invoice-photo-ai',
+    scenario: {
+      es: 'Foto sacada con el celular: la lee la IA (Gemini) y se cruza con el QR. El resultado está guardado para no gastar cuota.',
+      en: 'Phone photo: read by AI (Gemini) and checked against the QR. The result is stored so it does not use quota.',
+    },
+    expectedIssues: [],
+    copy: 'ORIGINAL',
+    letter: 'A',
+    pointOfSale: 5,
+    number: 3412,
+    issueDate: '2026-10-08',
+    saleCondition: 'Cuenta Corriente',
+    issuer: cerroAzul,
+    recipient: restaurant,
+    items: [
+      {
+        description: 'Malbec Reserva 2023 caja x 6',
+        quantity: 6,
+        unit: 'cajas',
+        unitPrice: 42000,
+        ivaRate: 21,
+      },
+      {
+        description: 'Torrontés 2025 caja x 6',
+        quantity: 4,
+        unit: 'cajas',
+        unitPrice: 31500,
+        ivaRate: 21,
+      },
+    ],
+    otherTaxes: [{ description: 'Percepción IIBB Mendoza', amount: 7560 }],
+    cae: '76393318840275',
+    caeDueDate: '2026-10-18',
+    photo: true,
+  },
+  {
     ...invoiceA,
     id: 'invoice-a-duplicate',
     scenario: {

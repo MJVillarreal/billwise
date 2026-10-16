@@ -1,0 +1,29 @@
+{
+  "model": "gemini-flash-lite-latest",
+  "date": "2026-10-16",
+  "answer": {
+    "voucherLetter": "A",
+    "pointOfSale": "00005",
+    "number": "00003412",
+    "issueDate": "2026-10-08",
+    "issuerCuit": "30992334181",
+    "issuerName": "Bodega Cerro Azul SA",
+    "recipientDocType": "CUIT",
+    "recipientDocNumber": "30991234566",
+    "recipientName": "Restaurante La Higuera SRL",
+    "currency": "PES",
+    "netTaxed": 378000,
+    "nonTaxed": 0,
+    "exempt": 0,
+    "iva": [
+      {
+        "rate": 21,
+        "amount": 79380
+      }
+    ],
+    "otherTaxes": 7560,
+    "total": 464940,
+    "cae": "76393318840275",
+    "caeDueDate": "2026-10-18"
+  }
+}

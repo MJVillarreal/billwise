@@ -49,14 +49,15 @@ It prints every field with its status (ok, warning or error) and whether it came
 
 ## Scripts
 
-| Command                      | Description                                                 |
-| ---------------------------- | ----------------------------------------------------------- |
-| `npm run build`              | Build all packages                                          |
-| `npm run generate:samples`   | Regenerate the sample invoices in `apps/web/public/samples` |
-| `npm run read -- <file.pdf>` | Read an invoice PDF and print the extracted fields          |
-| `npm test`                   | Run all tests                                               |
-| `npm run lint`               | Lint all packages                                           |
-| `npm run format`             | Format the codebase with Prettier                           |
+| Command                      | Description                                                                                  |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| `npm run build`              | Build all packages                                                                           |
+| `npm run generate:samples`   | Regenerate the sample invoices in `apps/web/public/samples`                                  |
+| `npm run precompute:ai`      | Read the sample photo with Gemini once and store the answer in `packages/samples/ai-results` |
+| `npm run read -- <file.pdf>` | Read an invoice PDF and print the extracted fields                                           |
+| `npm test`                   | Run all tests                                                                                |
+| `npm run lint`               | Lint all packages                                                                            |
+| `npm run format`             | Format the codebase with Prettier                                                            |
 
 ## License
 

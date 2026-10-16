@@ -52,6 +52,8 @@ export interface SampleInvoice {
   cae: string;
   caeDueDate: string;
   printed?: { total?: number; number?: number };
+  /** Shown in the demo as a phone photo read by the AI, with a stored answer. */
+  photo?: boolean;
   qr?: Partial<ArcaQrData>;
 }
 

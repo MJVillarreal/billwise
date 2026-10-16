@@ -330,6 +330,91 @@
     }
   },
   {
+    "id": "invoice-photo-ai",
+    "file": "invoice-photo-ai.pdf",
+    "thumbnail": "invoice-photo-ai.webp",
+    "photo": "invoice-photo-ai.jpg",
+    "ai": {
+      "model": "gemini-flash-lite-latest",
+      "date": "2026-10-16",
+      "answer": {
+        "voucherLetter": "A",
+        "pointOfSale": "00005",
+        "number": "00003412",
+        "issueDate": "2026-10-08",
+        "issuerCuit": "30992334181",
+        "issuerName": "Bodega Cerro Azul SA",
+        "recipientDocType": "CUIT",
+        "recipientDocNumber": "30991234566",
+        "recipientName": "Restaurante La Higuera SRL",
+        "currency": "PES",
+        "netTaxed": 378000,
+        "nonTaxed": 0,
+        "exempt": 0,
+        "iva": [
+          {
+            "rate": 21,
+            "amount": 79380
+          }
+        ],
+        "otherTaxes": 7560,
+        "total": 464940,
+        "cae": "76393318840275",
+        "caeDueDate": "2026-10-18"
+      }
+    },
+    "scenario": {
+      "es": "Foto sacada con el celular: la lee la IA (Gemini) y se cruza con el QR. El resultado está guardado para no gastar cuota.",
+      "en": "Phone photo: read by AI (Gemini) and checked against the QR. The result is stored so it does not use quota."
+    },
+    "expectedIssues": [],
+    "letter": "A",
+    "printed": {
+      "voucherType": 1,
+      "pointOfSale": "00005",
+      "number": "00003412",
+      "issueDate": "2026-10-08",
+      "issuer": {
+        "cuit": "30992334181",
+        "name": "Bodega Cerro Azul SA"
+      },
+      "recipient": {
+        "docType": 80,
+        "docNumber": "30991234566",
+        "name": "Restaurante La Higuera SRL"
+      },
+      "currency": "PES",
+      "netTaxed": 378000,
+      "nonTaxed": null,
+      "exempt": null,
+      "iva": [
+        {
+          "rate": 21,
+          "amount": 79380
+        }
+      ],
+      "otherTaxes": 7560,
+      "total": 464940,
+      "cae": "76393318840275",
+      "caeDueDate": "2026-10-18"
+    },
+    "qr": {
+      "ver": 1,
+      "fecha": "2026-10-08",
+      "cuit": 30992334181,
+      "ptoVta": 5,
+      "tipoCmp": 1,
+      "nroCmp": 3412,
+      "importe": 464940,
+      "moneda": "PES",
+      "ctz": 1,
+      "tipoDocRec": 80,
+      "nroDocRec": 30991234566,
+      "tipoCodAut": "E",
+      "codAut": 76393318840275
+    }
+  },
+  {
     "id": "invoice-a-duplicate",
     "file": "invoice-a-duplicate.pdf",
     "thumbnail": "invoice-a-duplicate.webp",

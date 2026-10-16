@@ -16,6 +16,7 @@
     "dev:web": "npm run dev -w @billwise/web",
     "dev:api": "npm run start:dev -w @billwise/api",
     "generate:samples": "npm run generate -w @billwise/samples",
+    "precompute:ai": "npm run precompute-ai -w @billwise/samples",
     "read": "npm run read -w @billwise/reader --",
     "build": "npm run build -w @billwise/shared && npm run build -w @billwise/reader && npm run build -w @billwise/api -w @billwise/web",
     "test": "npm run test --workspaces --if-present",
